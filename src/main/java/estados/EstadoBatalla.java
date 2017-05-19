@@ -11,6 +11,7 @@ import com.google.gson.Gson;
 
 import dominio.Asesino;
 import dominio.Casta;
+import dominio.DatosDePersonajeAReplicar;
 import dominio.Elfo;
 import dominio.Guerrero;
 import dominio.Hechicero;
@@ -260,7 +261,14 @@ public class EstadoBatalla extends Estado {
 	private void finalizarBatalla() {
 		try {
 			juego.getCliente().getSalida().writeObject(gson.toJson(paqueteFinalizarBatalla));
-			
+			//Problema que el objeto se crea en cada Tick
+			DatosDePersonajeAReplicar datosRep= new DatosDePersonajeAReplicar(personaje.getSalud(),personaje.getEnergia(),
+					personaje.getFuerza(), personaje.getDestreza(), personaje.getInteligencia(),
+					personaje.getExperiencia(), personaje.getNivel(),personaje.getIdPersonaje(), personaje.getDefensa(),
+					personaje.getSaludTope(),personaje.getEnergiaTope(),personaje.getCasta());
+
+			personaje.recibirDatosReplicadosDePersonaje(datosRep);
+			/*
 			paquetePersonaje.setSaludTope(personaje.getSaludTope());
 			paquetePersonaje.setEnergiaTope(personaje.getEnergiaTope());
 			paquetePersonaje.setNivel(personaje.getNivel());
@@ -276,6 +284,7 @@ public class EstadoBatalla extends Estado {
 			paqueteEnemigo.setDestreza(enemigo.getDestreza());
 			paqueteEnemigo.setFuerza(enemigo.getFuerza());
 			paqueteEnemigo.setInteligencia(enemigo.getInteligencia());
+			*/
 			
 			paquetePersonaje.setComando(Comando.ACTUALIZARPERSONAJE);
 			paqueteEnemigo.setComando(Comando.ACTUALIZARPERSONAJE);
