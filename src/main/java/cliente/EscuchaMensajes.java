@@ -80,20 +80,10 @@ public class EscuchaMensajes extends Thread {
 					
 					//MI IDEA fue que en el servidor los datos se actualicen siempre, y enviar al cliente
 					//la informacion para que actualice pantalla con la nueva informacion.
-					DatosDePersonajeAReplicar datoReplicarEnemigo=new DatosDePersonajeAReplicar();
-					DatosDePersonajeAReplicar datoReplicarPersonaje=new DatosDePersonajeAReplicar();
-					//empaquetar datos crea un objeto con la info completa para enviar al Personaje.
-					datoReplicarEnemigo.empaquetarDatos(juego.getEstadoBatalla().getEnemigo());
-					datoReplicarPersonaje.empaquetarDatos(juego.getEstadoBatalla().getPersonaje());
-					
-					datoReplicarEnemigo.setSalud(paqueteAtacar.getNuevaSaludPersonaje());
-					datoReplicarEnemigo.setEnergia(paqueteAtacar.getNuevaEnergiaPersonaje());
-					datoReplicarPersonaje.setSalud(paqueteAtacar.getNuevaSaludPersonaje());
-					datoReplicarPersonaje.setEnergia(paqueteAtacar.getNuevaEnergiaEnemigo());
-					
+					DatosDePersonajeAReplicar datoReplicarEnemigo=new DatosDePersonajeAReplicar(paqueteAtacar.getNuevaSaludEnemigo(), paqueteAtacar.getNuevaEnergiaEnemigo());
+					DatosDePersonajeAReplicar datoReplicarPersonaje = new DatosDePersonajeAReplicar(paqueteAtacar.getNuevaSaludPersonaje(), paqueteAtacar.getNuevaEnergiaPersonaje());
 					juego.getEstadoBatalla().getEnemigo().recibirDatosReplicadosDePersonaje(datoReplicarEnemigo);
 					juego.getEstadoBatalla().getPersonaje().recibirDatosReplicadosDePersonaje(datoReplicarPersonaje);
-
 					juego.getEstadoBatalla().setMiTurno(true);
 					break;
 					
@@ -116,7 +106,7 @@ public class EscuchaMensajes extends Thread {
 				}	
 			}
 		} catch (Exception e) {
-			JOptionPane.showMessageDialog(null, "Fallo la conexión con el servidor.");
+			JOptionPane.showMessageDialog(null, "Fallo la conexiï¿½n con el servidor.");
 			e.printStackTrace();
 		}
 	}
