@@ -75,6 +75,9 @@ public class Recursos {
 	public static BufferedImage barraExperiencia;
 	public static BufferedImage menuBatalla;
 	public static BufferedImage menuBatallaDeshabilitado;
+	public static BufferedImage menuBatalla2;
+	public static BufferedImage menuBatalla2Deshabilitado;
+	public static BufferedImage barraItems;
 	
 	public static Map<String, BufferedImage> habilidades = new HashMap<>();
 	// Fin Batalla
@@ -421,37 +424,37 @@ public class Recursos {
 		actualizarBarraDeCarga(++elementosCargados, menuCarga);
 		
 		//Comienza la carga de items
-		items.put("Pocion de Salud", CargadorImagen,cargarImagen(""));
+		items.put("Pocion de Salud", CargadorImagen.cargarImagen("/PocionSalud.png"));
 		actualizarBarraDeCarga(++elementosCargados, menuCarga);
 		
-		items.put("Pocion de Energia", CargadorImagen,cargarImagen(""));
+		items.put("Pocion de Energia", CargadorImagen.cargarImagen("/Pocion Energia.png"));
 		actualizarBarraDeCarga(++elementosCargados, menuCarga);
 		
-		items.put("Escudo", CargadorImagen,cargarImagen(""));
+		items.put("Escudo", CargadorImagen.cargarImagen("/Escudo.png"));
 		actualizarBarraDeCarga(++elementosCargados, menuCarga);
 		
-		items.put("Armamento", CargadorImagen,cargarImagen(""));
+		items.put("Armamento", CargadorImagen.cargarImagen("/Armamento.png"));
 		actualizarBarraDeCarga(++elementosCargados, menuCarga);
 		
-		items.put("Agua", CargadorImagen,cargarImagen(""));
+		items.put("Agua", CargadorImagen.cargarImagen("/Agua.png"));
 		actualizarBarraDeCarga(++elementosCargados, menuCarga);
 		
-		items.put("Libros", CargadorImagen,cargarImagen(""));
+		items.put("Libros", CargadorImagen.cargarImagen("/Libros.png"));
 		actualizarBarraDeCarga(++elementosCargados, menuCarga);
 		
-		items.put("Varita Magica", CargadorImagen,cargarImagen(""));
+		items.put("Varita Magica", CargadorImagen.cargarImagen("/VaritaMagica.png"));
 		actualizarBarraDeCarga(++elementosCargados, menuCarga);
 		
-		items.put("Veneno", CargadorImagen,cargarImagen(""));
+		items.put("Veneno", CargadorImagen.cargarImagen("/Veneno.png"));
 		actualizarBarraDeCarga(++elementosCargados, menuCarga);
 		
-		items.put("Pocion de Cansancio", CargadorImagen,cargarImagen(""));
+		items.put("Pocion de Cansancio", CargadorImagen.cargarImagen("/Pocion Cansancio.png"));
 		actualizarBarraDeCarga(++elementosCargados, menuCarga);
 		
-		items.put("Robo de Armamento", CargadorImagen,cargarImagen(""));
-		actualizarBarraDeCarga(++elementosCargados, menuCarga);
+		/*items.put("Robo de Armamento", CargadorImagen,cargarImagen(""));
+		actualizarBarraDeCarga(++elementosCargados, menuCarga);*/
 		
-		items.put("Salud", CargadorImagen,cargarImagen(""));
+		items.put("Salud", CargadorImagen.cargarImagen("/Salud.png"));
 		actualizarBarraDeCarga(++elementosCargados, menuCarga);
 		
 		//Finalizo la carga de items
@@ -461,6 +464,15 @@ public class Recursos {
 		
 		menuBatallaDeshabilitado = CargadorImagen.cargarImagen("/MenuBatallaDeshabilitado.png");
 		actualizarBarraDeCarga(++elementosCargados, menuCarga);
+		
+		barraItems = CargadorImagen.cargarImagen("/BarraItems.png");
+		actualizarBarraDeCarga(++elementosCargados, menuCarga);
+		
+		/*menuBatalla2 = CargadorImagen.cargarImagen("/MenuBatalla2.png");
+		actualizarBarraDeCarga(++elementosCargados, menuCarga);
+		
+		menuBatalla2Deshabilitado = CargadorImagen.cargarImagen("/MenuBatalla2Deshabilitado.png");
+		actualizarBarraDeCarga(++elementosCargados, menuCarga);*/
 		// Fin Batalla
 	}
 
