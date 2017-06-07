@@ -10,7 +10,7 @@ import mundo.Tile;
 
 public class Recursos {
 
-	private static int ELEMENTOS = 65;
+	private static int ELEMENTOS = (65+11);
 	private static int ANCHOBARRA = 345;
 
 	private static int ANCHO; // Ancho del frame a obtener
@@ -79,7 +79,7 @@ public class Recursos {
 	public static Map<String, BufferedImage> habilidades = new HashMap<>();
 	// Fin Batalla
 	
-
+	public static Map<String, BufferedImage> items = new HashMap<>();
 	// Se cargan todos los recursos del juego una sola vez al inicio
 
 	public static void cargar(MenuCarga menuCarga) {
@@ -419,6 +419,42 @@ public class Recursos {
 		
 		habilidades.put("Ser Energizado", CargadorImagen.cargarImagen("/Ser Energizado.png"));
 		actualizarBarraDeCarga(++elementosCargados, menuCarga);
+		
+		//Comienza la carga de items
+		items.put("Pocion de Salud", CargadorImagen,cargarImagen(""));
+		actualizarBarraDeCarga(++elementosCargados, menuCarga);
+		
+		items.put("Pocion de Energia", CargadorImagen,cargarImagen(""));
+		actualizarBarraDeCarga(++elementosCargados, menuCarga);
+		
+		items.put("Escudo", CargadorImagen,cargarImagen(""));
+		actualizarBarraDeCarga(++elementosCargados, menuCarga);
+		
+		items.put("Armamento", CargadorImagen,cargarImagen(""));
+		actualizarBarraDeCarga(++elementosCargados, menuCarga);
+		
+		items.put("Agua", CargadorImagen,cargarImagen(""));
+		actualizarBarraDeCarga(++elementosCargados, menuCarga);
+		
+		items.put("Libros", CargadorImagen,cargarImagen(""));
+		actualizarBarraDeCarga(++elementosCargados, menuCarga);
+		
+		items.put("Varita Magica", CargadorImagen,cargarImagen(""));
+		actualizarBarraDeCarga(++elementosCargados, menuCarga);
+		
+		items.put("Veneno", CargadorImagen,cargarImagen(""));
+		actualizarBarraDeCarga(++elementosCargados, menuCarga);
+		
+		items.put("Pocion de Cansancio", CargadorImagen,cargarImagen(""));
+		actualizarBarraDeCarga(++elementosCargados, menuCarga);
+		
+		items.put("Robo de Armamento", CargadorImagen,cargarImagen(""));
+		actualizarBarraDeCarga(++elementosCargados, menuCarga);
+		
+		items.put("Salud", CargadorImagen,cargarImagen(""));
+		actualizarBarraDeCarga(++elementosCargados, menuCarga);
+		
+		//Finalizo la carga de items
 		
 		menuBatalla = CargadorImagen.cargarImagen("/MenuBatalla.png");
 		actualizarBarraDeCarga(++elementosCargados, menuCarga);
