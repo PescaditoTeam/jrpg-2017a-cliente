@@ -140,6 +140,10 @@ public class EstadoBatalla extends Estado {
 						personaje.serEnergizado(5);
 						haySpellSeleccionada = true;
 					}
+					
+					if(menuBatalla.getBotonClickeado(posMouse[0], posMouse[1]) == 7){
+						personaje.ef
+					}
 				}
 
 

@@ -1,10 +1,15 @@
 package recursos;
 
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.Locale;
 import java.util.Map;
+import java.util.Scanner;
 
+import dominio.Item;
 import frames.MenuCarga;
 import mundo.Tile;
 
@@ -84,6 +89,8 @@ public class Recursos {
 	
 	public static Map<String, BufferedImage> items = new HashMap<>();
 	// Se cargan todos los recursos del juego una sola vez al inicio
+	
+	public static Item[] itemsExistentes;
 
 	public static void cargar(MenuCarga menuCarga) {
 		
@@ -474,6 +481,21 @@ public class Recursos {
 		menuBatalla2Deshabilitado = CargadorImagen.cargarImagen("/MenuBatalla2Deshabilitado.png");
 		actualizarBarraDeCarga(++elementosCargados, menuCarga);*/
 		// Fin Batalla
+		
+		File fi = new File("/Items.txt");
+		Scanner sc;
+		try {
+			sc = new Scanner(fi);
+			sc.useLocale(Locale.ENGLISH);
+			for (int i = 0; i<sc.nextInt(); i++){
+				itemsExistentes[i] = new Item(i+1, sc.next(), sc.next(), sc.nextInt());
+			}
+			sc.close();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 
 	private static void actualizarBarraDeCarga(int elementosCargados, MenuCarga menuCarga) {
