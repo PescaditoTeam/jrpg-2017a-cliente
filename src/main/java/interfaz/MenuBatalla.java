@@ -121,10 +121,10 @@ public class MenuBatalla {
 					null);
 		}
 		if (itemsDisponibles[9] > 0){
-		g.drawImage(Recursos.items.get("Salud"), botones[15][0], botones[15][1], anchoBoton, anchoBoton, null);
+		g.drawImage(Recursos.items.get("Lentitud"), botones[15][0], botones[15][1], anchoBoton, anchoBoton, null);
 		}
 		else{
-			g.drawImage(Recursos.itemsOFF.get("Salud OFF"), botones[15][0], botones[15][1], anchoBoton, anchoBoton, null);
+			g.drawImage(Recursos.itemsOFF.get("Lentitud OFF"), botones[15][0], botones[15][1], anchoBoton, anchoBoton, null);
 
 		}
 		
@@ -145,7 +145,7 @@ public class MenuBatalla {
 		g.drawString("Varita Magica", x + 575, y + 65);
 		g.drawString("Veneno", x + 582, y + 145);
 		g.drawString("Cansancio", x + 654, y + 65);
-		g.drawString("Salud", x + 654, y + 145);
+		g.drawString("Lentitud", x + 654, y + 145);
 
 		// Dibujo el turno de quien es
 		g.setColor(Color.WHITE);

@@ -8,4 +8,4 @@ Libros inteligencia 20
 VaritaMagica magia 50
 Veneno salud -20
 Cansancio energia -30
-Salud salud 100
+Lentitud destreza -35

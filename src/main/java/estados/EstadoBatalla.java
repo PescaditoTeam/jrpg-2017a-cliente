@@ -149,6 +149,90 @@ public class EstadoBatalla extends Estado {
 						}
 						
 					}
+					
+					if(menuBatalla.getBotonClickeado(posMouse[0], posMouse[1]) == 8){
+						if(personaje.getMochila().getInventario()[1] > 0){
+							personaje.efectuarItem(Recursos.itemsExistentes[1]);
+							personaje.getMochila().getInventario()[1]--;
+							menuBatalla.restarItem(1);
+						}
+						
+					}
+					
+					if(menuBatalla.getBotonClickeado(posMouse[0], posMouse[1]) == 9){
+						if(personaje.getMochila().getInventario()[2] > 0){
+							personaje.efectuarItem(Recursos.itemsExistentes[2]);
+							personaje.getMochila().getInventario()[2]--;
+							menuBatalla.restarItem(2);
+						}
+						
+					}
+					
+					if(menuBatalla.getBotonClickeado(posMouse[0], posMouse[1]) == 10){
+						if(personaje.getMochila().getInventario()[3] > 0){
+							personaje.efectuarItem(Recursos.itemsExistentes[3]);
+							personaje.getMochila().getInventario()[3]--;
+							menuBatalla.restarItem(3);
+						}
+						
+					}
+					
+					if(menuBatalla.getBotonClickeado(posMouse[0], posMouse[1]) == 11){
+						if(personaje.getMochila().getInventario()[4] > 0){
+							personaje.efectuarItem(Recursos.itemsExistentes[4]);
+							personaje.getMochila().getInventario()[4]--;
+							menuBatalla.restarItem(4);
+						}
+						
+					}
+					
+					if(menuBatalla.getBotonClickeado(posMouse[0], posMouse[1]) == 12){
+						if(personaje.getMochila().getInventario()[5] > 0){
+							personaje.efectuarItem(Recursos.itemsExistentes[5]);
+							personaje.getMochila().getInventario()[5]--;
+							menuBatalla.restarItem(5);
+						}
+						
+					}
+					
+					if(menuBatalla.getBotonClickeado(posMouse[0], posMouse[1]) == 13){
+						if(personaje.getMochila().getInventario()[6] > 0){
+							personaje.efectuarItem(Recursos.itemsExistentes[6]);
+							personaje.getMochila().getInventario()[6]--;
+							menuBatalla.restarItem(6);
+						}
+						
+					}
+					
+					if(menuBatalla.getBotonClickeado(posMouse[0], posMouse[1]) == 14){
+						if(personaje.getMochila().getInventario()[7] > 0){
+							enemigo.efectuarItem(Recursos.itemsExistentes[7]);
+							personaje.getMochila().getInventario()[7]--;
+							menuBatalla.restarItem(7);
+							seRealizoAccion = true;
+						}
+						
+					}
+					
+					if(menuBatalla.getBotonClickeado(posMouse[0], posMouse[1]) == 15){
+						if(personaje.getMochila().getInventario()[8] > 0){
+							enemigo.efectuarItem(Recursos.itemsExistentes[8]);
+							personaje.getMochila().getInventario()[8]--;
+							menuBatalla.restarItem(8);
+							seRealizoAccion = true;
+						}
+						
+					}
+					
+					if(menuBatalla.getBotonClickeado(posMouse[0], posMouse[1]) == 16){
+						if(personaje.getMochila().getInventario()[9] > 0){
+							enemigo.efectuarItem(Recursos.itemsExistentes[9]);
+							personaje.getMochila().getInventario()[9]--;
+							menuBatalla.restarItem(9);
+							seRealizoAccion = true;
+						}
+						
+					}
 				}
 
 
@@ -277,6 +361,7 @@ public class EstadoBatalla extends Estado {
 					personaje.getSaludTope(),personaje.getEnergiaTope(),personaje.getCasta());
 
 			personaje.recibirDatosReplicadosDePersonaje(datosRep);
+			
 			/*
 			paquetePersonaje.setSaludTope(personaje.getSaludTope());
 			paquetePersonaje.setEnergiaTope(personaje.getEnergiaTope());

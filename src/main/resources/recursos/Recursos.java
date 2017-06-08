@@ -459,7 +459,7 @@ public class Recursos {
 		items.put("Pocion de Cansancio", CargadorImagen.cargarImagen("/Pocion Cansancio.png"));
 		actualizarBarraDeCarga(++elementosCargados, menuCarga);
 		
-		items.put("Salud", CargadorImagen.cargarImagen("/Salud.png"));
+		items.put("Lentitud", CargadorImagen.cargarImagen("/Lentitud.png"));
 		actualizarBarraDeCarga(++elementosCargados, menuCarga);
 		
 		//Finalizo la carga de items
@@ -485,13 +485,13 @@ public class Recursos {
 		itemsOFF.put("Varita Magica OFF", CargadorImagen.cargarImagen("/VaritaMagicaOFF.png"));
 		actualizarBarraDeCarga(++elementosCargados, menuCarga);
 		
-		itemsOFF.put("Veneno OFF", CargadorImagen.cargarImagen("/VenenoOFF.jpg"));
+		itemsOFF.put("Veneno OFF", CargadorImagen.cargarImagen("/VenenoOFF.png"));
 		actualizarBarraDeCarga(++elementosCargados, menuCarga);
 		
 		itemsOFF.put("Pocion de Cansancio OFF", CargadorImagen.cargarImagen("/Pocion CansancioOFF.png"));
 		actualizarBarraDeCarga(++elementosCargados, menuCarga);
 		
-		itemsOFF.put("Salud OFF", CargadorImagen.cargarImagen("/SaludOFF.png"));
+		itemsOFF.put("Lentitud OFF", CargadorImagen.cargarImagen("/LentitudOFF.png"));
 		actualizarBarraDeCarga(++elementosCargados, menuCarga);
 		
 		//Fin carga de Items Deshabilitados
@@ -511,18 +511,19 @@ public class Recursos {
 		actualizarBarraDeCarga(++elementosCargados, menuCarga);*/
 		// Fin Batalla
 		
-		File fi = new File("/Items.txt");
+		File fi = new File("Items.txt");
 		Scanner sc;
 		try {
 			sc = new Scanner(fi);
 			sc.useLocale(Locale.ENGLISH);
 			itemsExistentes = new Item[sc.nextInt()];
+			//int tam = sc.nextInt();
 			for (int i = 0; i<itemsExistentes.length; i++){
-				//itemsExistentes[i] = new Item(i+1, sc.next(), sc.next(), sc.nextInt());
-				itemsExistentes[i].setId(i+1);
+				itemsExistentes[i] = new Item(i+1, sc.next(), sc.next(), sc.nextInt());
+				/*itemsExistentes[i].setId(i+1);
 				itemsExistentes[i].setNombre(sc.next());
 				itemsExistentes[i].setAtributoAModificar(sc.next());
-				itemsExistentes[i].setValor(sc.nextInt());
+				itemsExistentes[i].setValor(sc.nextInt());*/
 			}
 			sc.close();
 		} catch (FileNotFoundException e) {
