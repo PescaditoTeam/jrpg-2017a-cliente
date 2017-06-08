@@ -142,7 +142,12 @@ public class EstadoBatalla extends Estado {
 					}
 					
 					if(menuBatalla.getBotonClickeado(posMouse[0], posMouse[1]) == 7){
-						personaje.ef
+						if(personaje.getMochila().getInventario()[0] > 0){
+							personaje.efectuarItem(Recursos.itemsExistentes[0]);
+							personaje.getMochila().getInventario()[0]--;
+							menuBatalla.restarItem(0);
+						}
+						
 					}
 				}
 

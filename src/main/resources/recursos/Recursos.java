@@ -89,6 +89,7 @@ public class Recursos {
 	
 	public static Map<String, BufferedImage> items = new HashMap<>();
 	// Se cargan todos los recursos del juego una sola vez al inicio
+	public static Map<String, BufferedImage> itemsOFF = new HashMap<>();
 	
 	public static Item[] itemsExistentes;
 
@@ -458,14 +459,42 @@ public class Recursos {
 		items.put("Pocion de Cansancio", CargadorImagen.cargarImagen("/Pocion Cansancio.png"));
 		actualizarBarraDeCarga(++elementosCargados, menuCarga);
 		
-		/*items.put("Robo de Armamento", CargadorImagen,cargarImagen(""));
-		actualizarBarraDeCarga(++elementosCargados, menuCarga);*/
-		
 		items.put("Salud", CargadorImagen.cargarImagen("/Salud.png"));
 		actualizarBarraDeCarga(++elementosCargados, menuCarga);
 		
 		//Finalizo la carga de items
 		
+		itemsOFF.put("Pocion de Salud OFF", CargadorImagen.cargarImagen("/PocionSaludOFF.png"));
+		actualizarBarraDeCarga(++elementosCargados, menuCarga);
+		
+		itemsOFF.put("Pocion de Energia OFF", CargadorImagen.cargarImagen("/Pocion EnergiaOFF.png"));
+		actualizarBarraDeCarga(++elementosCargados, menuCarga);
+		
+		itemsOFF.put("Escudo OFF", CargadorImagen.cargarImagen("/EscudoOFF.png"));
+		actualizarBarraDeCarga(++elementosCargados, menuCarga);
+		
+		itemsOFF.put("Armamento OFF", CargadorImagen.cargarImagen("/ArmamentoOFF.png"));
+		actualizarBarraDeCarga(++elementosCargados, menuCarga);
+		
+		itemsOFF.put("Agua OFF", CargadorImagen.cargarImagen("/AguaOFF.png"));
+		actualizarBarraDeCarga(++elementosCargados, menuCarga);
+		
+		itemsOFF.put("Libros OFF", CargadorImagen.cargarImagen("/LibrosOFF.png"));
+		actualizarBarraDeCarga(++elementosCargados, menuCarga);
+		
+		itemsOFF.put("Varita Magica OFF", CargadorImagen.cargarImagen("/VaritaMagicaOFF.png"));
+		actualizarBarraDeCarga(++elementosCargados, menuCarga);
+		
+		itemsOFF.put("Veneno OFF", CargadorImagen.cargarImagen("/VenenoOFF.jpg"));
+		actualizarBarraDeCarga(++elementosCargados, menuCarga);
+		
+		itemsOFF.put("Pocion de Cansancio OFF", CargadorImagen.cargarImagen("/Pocion CansancioOFF.png"));
+		actualizarBarraDeCarga(++elementosCargados, menuCarga);
+		
+		itemsOFF.put("Salud OFF", CargadorImagen.cargarImagen("/SaludOFF.png"));
+		actualizarBarraDeCarga(++elementosCargados, menuCarga);
+		
+		//Fin carga de Items Deshabilitados
 		menuBatalla = CargadorImagen.cargarImagen("/MenuBatalla.png");
 		actualizarBarraDeCarga(++elementosCargados, menuCarga);
 		
@@ -487,8 +516,13 @@ public class Recursos {
 		try {
 			sc = new Scanner(fi);
 			sc.useLocale(Locale.ENGLISH);
-			for (int i = 0; i<sc.nextInt(); i++){
-				itemsExistentes[i] = new Item(i+1, sc.next(), sc.next(), sc.nextInt());
+			itemsExistentes = new Item[sc.nextInt()];
+			for (int i = 0; i<itemsExistentes.length; i++){
+				//itemsExistentes[i] = new Item(i+1, sc.next(), sc.next(), sc.nextInt());
+				itemsExistentes[i].setId(i+1);
+				itemsExistentes[i].setNombre(sc.next());
+				itemsExistentes[i].setAtributoAModificar(sc.next());
+				itemsExistentes[i].setValor(sc.nextInt());
 			}
 			sc.close();
 		} catch (FileNotFoundException e) {

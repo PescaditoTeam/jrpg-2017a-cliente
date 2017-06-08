@@ -59,60 +59,73 @@ public class MenuBatalla {
 			g.drawImage(Recursos.items.get("Pocion de Salud"), botones[6][0], botones[6][1], anchoBoton, anchoBoton,
 					null);
 		else {
-
+			g.drawImage(Recursos.itemsOFF.get("Pocion de Salud OFF"), botones[6][0], botones[6][1], anchoBoton, anchoBoton,
+					null);
 		}
 		if (itemsDisponibles[1] > 0){
 		g.drawImage(Recursos.items.get("Pocion de Energia"), botones[7][0], botones[7][1], anchoBoton, anchoBoton,
 				null);
 		}
 		else{
-			
+			g.drawImage(Recursos.itemsOFF.get("Pocion de Energia OFF"), botones[7][0], botones[7][1], anchoBoton, anchoBoton,
+					null);
 		}
 		if (itemsDisponibles[2] > 0){
 		g.drawImage(Recursos.items.get("Escudo"), botones[8][0], botones[8][1], anchoBoton, anchoBoton, null);
 		}
 		else{
-			
+			g.drawImage(Recursos.itemsOFF.get("Escudo OFF"), botones[8][0], botones[8][1], anchoBoton, anchoBoton, null);
+
 		}
 		if (itemsDisponibles[3] > 0){
 		g.drawImage(Recursos.items.get("Armamento"), botones[9][0], botones[9][1], anchoBoton, anchoBoton, null);
 		}
 		else{
-			
+			g.drawImage(Recursos.itemsOFF.get("Armamento OFF"), botones[9][0], botones[9][1], anchoBoton, anchoBoton, null);
+
 		}
 		if (itemsDisponibles[4] > 0){
 		g.drawImage(Recursos.items.get("Agua"), botones[10][0], botones[10][1], anchoBoton, anchoBoton, null);
 		}
 		else{
-			
+			g.drawImage(Recursos.itemsOFF.get("Agua OFF"), botones[10][0], botones[10][1], anchoBoton, anchoBoton, null);
+
 		}
 		if (itemsDisponibles[5] > 0){
 		g.drawImage(Recursos.items.get("Libros"), botones[11][0], botones[11][1], anchoBoton, anchoBoton, null);
 		}
 		else{
-			
+			g.drawImage(Recursos.itemsOFF.get("Libros OFF"), botones[11][0], botones[11][1], anchoBoton, anchoBoton, null);
+
 		}
 		if (itemsDisponibles[6] > 0){
 		g.drawImage(Recursos.items.get("Varita Magica"), botones[12][0], botones[12][1], anchoBoton, anchoBoton, null);
 		}
 		else{
-			
+			g.drawImage(Recursos.itemsOFF.get("Varita Magica OFF"), botones[12][0], botones[12][1], anchoBoton, anchoBoton, null);
+	
 		}
 		if (itemsDisponibles[7] > 0){
 		g.drawImage(Recursos.items.get("Veneno"), botones[13][0], botones[13][1], anchoBoton, anchoBoton, null);
 		}
 		else{
-			
+			g.drawImage(Recursos.itemsOFF.get("Veneno OFF"), botones[13][0], botones[13][1], anchoBoton, anchoBoton, null);
+
 		}
 		if (itemsDisponibles[8] > 0){
 		g.drawImage(Recursos.items.get("Pocion de Cansancio"), botones[14][0], botones[14][1], anchoBoton, anchoBoton,
 				null);
 		}
+		else{
+			g.drawImage(Recursos.itemsOFF.get("Pocion de Cansancio OFF"), botones[14][0], botones[14][1], anchoBoton, anchoBoton,
+					null);
+		}
 		if (itemsDisponibles[9] > 0){
 		g.drawImage(Recursos.items.get("Salud"), botones[15][0], botones[15][1], anchoBoton, anchoBoton, null);
 		}
 		else{
-			
+			g.drawImage(Recursos.itemsOFF.get("Salud OFF"), botones[15][0], botones[15][1], anchoBoton, anchoBoton, null);
+
 		}
 		
 		// Dibujo las leyendas
@@ -159,6 +172,17 @@ public class MenuBatalla {
 				&& mouseY <= y + Recursos.menuBatalla.getHeight())
 			return habilitado;
 		return false;
+	}
+	
+	public int[] getItemsDisponibles() {
+		return itemsDisponibles;
+	}
+
+	public void setItemsDisponibles(int[] itemsDisponibles) {
+		this.itemsDisponibles = itemsDisponibles;
+	}
+	public void restarItem(int index){
+		itemsDisponibles[index]--;
 	}
 
 	public void setHabilitado(boolean b) {
