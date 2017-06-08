@@ -16,6 +16,8 @@ import dominio.Elfo;
 import dominio.Guerrero;
 import dominio.Hechicero;
 import dominio.Humano;
+import dominio.Item;
+import dominio.MyRandom;
 import dominio.Orco;
 import dominio.Personaje;
 import interfaz.EstadoDePersonaje;
@@ -209,7 +211,7 @@ public class EstadoBatalla extends Estado {
 							enemigo.efectuarItem(Recursos.itemsExistentes[7]);
 							personaje.getMochila().getInventario()[7]--;
 							menuBatalla.restarItem(7);
-							seRealizoAccion = true;
+							//seRealizoAccion = true;
 						}
 						
 					}
@@ -219,7 +221,7 @@ public class EstadoBatalla extends Estado {
 							enemigo.efectuarItem(Recursos.itemsExistentes[8]);
 							personaje.getMochila().getInventario()[8]--;
 							menuBatalla.restarItem(8);
-							seRealizoAccion = true;
+							//seRealizoAccion = true;
 						}
 						
 					}
@@ -229,7 +231,7 @@ public class EstadoBatalla extends Estado {
 							enemigo.efectuarItem(Recursos.itemsExistentes[9]);
 							personaje.getMochila().getInventario()[9]--;
 							menuBatalla.restarItem(9);
-							seRealizoAccion = true;
+							//seRealizoAccion = true;
 						}
 						
 					}
@@ -362,6 +364,8 @@ public class EstadoBatalla extends Estado {
 
 			personaje.recibirDatosReplicadosDePersonaje(datosRep);
 			
+			
+			
 			/*
 			paquetePersonaje.setSaludTope(personaje.getSaludTope());
 			paquetePersonaje.setEnergiaTope(personaje.getEnergiaTope());
@@ -382,6 +386,11 @@ public class EstadoBatalla extends Estado {
 			
 			paquetePersonaje.setComando(Comando.ACTUALIZARPERSONAJE);
 			paqueteEnemigo.setComando(Comando.ACTUALIZARPERSONAJE);
+			
+			Item item = Recursos.itemsExistentes[new MyRandom().obtenerAleatorioMenorQue(10)];
+			paquetePersonaje.setMochila(item);
+			
+			
 			
 			juego.getCliente().getSalida().writeObject(gson.toJson(paquetePersonaje));
 			juego.getCliente().getSalida().writeObject(gson.toJson(paqueteEnemigo));
