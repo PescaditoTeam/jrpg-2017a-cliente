@@ -11,10 +11,13 @@ import com.google.gson.Gson;
 
 import dominio.Asesino;
 import dominio.Casta;
+import dominio.DatosDePersonajeAReplicar;
 import dominio.Elfo;
 import dominio.Guerrero;
 import dominio.Hechicero;
 import dominio.Humano;
+import dominio.Item;
+import dominio.MyRandom;
 import dominio.Orco;
 import dominio.Personaje;
 import interfaz.EstadoDePersonaje;
@@ -139,6 +142,99 @@ public class EstadoBatalla extends Estado {
 						personaje.serEnergizado(5);
 						haySpellSeleccionada = true;
 					}
+					
+					if(menuBatalla.getBotonClickeado(posMouse[0], posMouse[1]) == 7){
+						if(personaje.getMochila().getInventario()[0] > 0){
+							personaje.efectuarItem(Recursos.itemsExistentes[0]);
+							personaje.getMochila().getInventario()[0]--;
+							menuBatalla.restarItem(0);
+						}
+						
+					}
+					
+					if(menuBatalla.getBotonClickeado(posMouse[0], posMouse[1]) == 8){
+						if(personaje.getMochila().getInventario()[1] > 0){
+							personaje.efectuarItem(Recursos.itemsExistentes[1]);
+							personaje.getMochila().getInventario()[1]--;
+							menuBatalla.restarItem(1);
+						}
+						
+					}
+					
+					if(menuBatalla.getBotonClickeado(posMouse[0], posMouse[1]) == 9){
+						if(personaje.getMochila().getInventario()[2] > 0){
+							personaje.efectuarItem(Recursos.itemsExistentes[2]);
+							personaje.getMochila().getInventario()[2]--;
+							menuBatalla.restarItem(2);
+						}
+						
+					}
+					
+					if(menuBatalla.getBotonClickeado(posMouse[0], posMouse[1]) == 10){
+						if(personaje.getMochila().getInventario()[3] > 0){
+							personaje.efectuarItem(Recursos.itemsExistentes[3]);
+							personaje.getMochila().getInventario()[3]--;
+							menuBatalla.restarItem(3);
+						}
+						
+					}
+					
+					if(menuBatalla.getBotonClickeado(posMouse[0], posMouse[1]) == 11){
+						if(personaje.getMochila().getInventario()[4] > 0){
+							personaje.efectuarItem(Recursos.itemsExistentes[4]);
+							personaje.getMochila().getInventario()[4]--;
+							menuBatalla.restarItem(4);
+						}
+						
+					}
+					
+					if(menuBatalla.getBotonClickeado(posMouse[0], posMouse[1]) == 12){
+						if(personaje.getMochila().getInventario()[5] > 0){
+							personaje.efectuarItem(Recursos.itemsExistentes[5]);
+							personaje.getMochila().getInventario()[5]--;
+							menuBatalla.restarItem(5);
+						}
+						
+					}
+					
+					if(menuBatalla.getBotonClickeado(posMouse[0], posMouse[1]) == 13){
+						if(personaje.getMochila().getInventario()[6] > 0){
+							personaje.efectuarItem(Recursos.itemsExistentes[6]);
+							personaje.getMochila().getInventario()[6]--;
+							menuBatalla.restarItem(6);
+						}
+						
+					}
+					
+					if(menuBatalla.getBotonClickeado(posMouse[0], posMouse[1]) == 14){
+						if(personaje.getMochila().getInventario()[7] > 0){
+							enemigo.efectuarItem(Recursos.itemsExistentes[7]);
+							personaje.getMochila().getInventario()[7]--;
+							menuBatalla.restarItem(7);
+							//seRealizoAccion = true;
+						}
+						
+					}
+					
+					if(menuBatalla.getBotonClickeado(posMouse[0], posMouse[1]) == 15){
+						if(personaje.getMochila().getInventario()[8] > 0){
+							enemigo.efectuarItem(Recursos.itemsExistentes[8]);
+							personaje.getMochila().getInventario()[8]--;
+							menuBatalla.restarItem(8);
+							//seRealizoAccion = true;
+						}
+						
+					}
+					
+					if(menuBatalla.getBotonClickeado(posMouse[0], posMouse[1]) == 16){
+						if(personaje.getMochila().getInventario()[9] > 0){
+							enemigo.efectuarItem(Recursos.itemsExistentes[9]);
+							personaje.getMochila().getInventario()[9]--;
+							menuBatalla.restarItem(9);
+							//seRealizoAccion = true;
+						}
+						
+					}
 				}
 
 
@@ -260,7 +356,17 @@ public class EstadoBatalla extends Estado {
 	private void finalizarBatalla() {
 		try {
 			juego.getCliente().getSalida().writeObject(gson.toJson(paqueteFinalizarBatalla));
+			//Problema que el objeto se crea en cada Tick
+			DatosDePersonajeAReplicar datosRep= new DatosDePersonajeAReplicar(personaje.getSalud(),personaje.getEnergia(),
+					personaje.getFuerza(), personaje.getDestreza(), personaje.getInteligencia(),
+					personaje.getExperiencia(), personaje.getNivel(),personaje.getIdPersonaje(), personaje.getDefensa(),
+					personaje.getSaludTope(),personaje.getEnergiaTope(),personaje.getCasta());
+
+			personaje.recibirDatosReplicadosDePersonaje(datosRep);
 			
+			
+			
+			/*
 			paquetePersonaje.setSaludTope(personaje.getSaludTope());
 			paquetePersonaje.setEnergiaTope(personaje.getEnergiaTope());
 			paquetePersonaje.setNivel(personaje.getNivel());
@@ -276,9 +382,15 @@ public class EstadoBatalla extends Estado {
 			paqueteEnemigo.setDestreza(enemigo.getDestreza());
 			paqueteEnemigo.setFuerza(enemigo.getFuerza());
 			paqueteEnemigo.setInteligencia(enemigo.getInteligencia());
+			*/
 			
 			paquetePersonaje.setComando(Comando.ACTUALIZARPERSONAJE);
 			paqueteEnemigo.setComando(Comando.ACTUALIZARPERSONAJE);
+			
+			Item item = Recursos.itemsExistentes[new MyRandom().obtenerAleatorioMenorQue(10)];
+			paquetePersonaje.setMochila(item);
+			
+			
 			
 			juego.getCliente().getSalida().writeObject(gson.toJson(paquetePersonaje));
 			juego.getCliente().getSalida().writeObject(gson.toJson(paqueteEnemigo));

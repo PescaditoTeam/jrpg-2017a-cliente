@@ -1,16 +1,21 @@
 package recursos;
 
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.Locale;
 import java.util.Map;
+import java.util.Scanner;
 
+import dominio.Item;
 import frames.MenuCarga;
 import mundo.Tile;
 
 public class Recursos {
 
-	private static int ELEMENTOS = 65;
+	private static int ELEMENTOS = (65+11);
 	private static int ANCHOBARRA = 345;
 
 	private static int ANCHO; // Ancho del frame a obtener
@@ -75,12 +80,18 @@ public class Recursos {
 	public static BufferedImage barraExperiencia;
 	public static BufferedImage menuBatalla;
 	public static BufferedImage menuBatallaDeshabilitado;
+	public static BufferedImage menuBatalla2;
+	public static BufferedImage menuBatalla2Deshabilitado;
+	public static BufferedImage barraItems;
 	
 	public static Map<String, BufferedImage> habilidades = new HashMap<>();
 	// Fin Batalla
 	
-
+	public static Map<String, BufferedImage> items = new HashMap<>();
 	// Se cargan todos los recursos del juego una sola vez al inicio
+	public static Map<String, BufferedImage> itemsOFF = new HashMap<>();
+	
+	public static Item[] itemsExistentes;
 
 	public static void cargar(MenuCarga menuCarga) {
 		
@@ -420,12 +431,106 @@ public class Recursos {
 		habilidades.put("Ser Energizado", CargadorImagen.cargarImagen("/Ser Energizado.png"));
 		actualizarBarraDeCarga(++elementosCargados, menuCarga);
 		
+		//Comienza la carga de items
+		items.put("Pocion de Salud", CargadorImagen.cargarImagen("/PocionSalud.png"));
+		actualizarBarraDeCarga(++elementosCargados, menuCarga);
+		
+		items.put("Pocion de Energia", CargadorImagen.cargarImagen("/Pocion Energia.png"));
+		actualizarBarraDeCarga(++elementosCargados, menuCarga);
+		
+		items.put("Escudo", CargadorImagen.cargarImagen("/Escudo.png"));
+		actualizarBarraDeCarga(++elementosCargados, menuCarga);
+		
+		items.put("Armamento", CargadorImagen.cargarImagen("/Armamento.png"));
+		actualizarBarraDeCarga(++elementosCargados, menuCarga);
+		
+		items.put("Agua", CargadorImagen.cargarImagen("/Agua.png"));
+		actualizarBarraDeCarga(++elementosCargados, menuCarga);
+		
+		items.put("Libros", CargadorImagen.cargarImagen("/Libros.png"));
+		actualizarBarraDeCarga(++elementosCargados, menuCarga);
+		
+		items.put("Varita Magica", CargadorImagen.cargarImagen("/VaritaMagica.png"));
+		actualizarBarraDeCarga(++elementosCargados, menuCarga);
+		
+		items.put("Veneno", CargadorImagen.cargarImagen("/Veneno.png"));
+		actualizarBarraDeCarga(++elementosCargados, menuCarga);
+		
+		items.put("Pocion de Cansancio", CargadorImagen.cargarImagen("/Pocion Cansancio.png"));
+		actualizarBarraDeCarga(++elementosCargados, menuCarga);
+		
+		items.put("Lentitud", CargadorImagen.cargarImagen("/Lentitud.png"));
+		actualizarBarraDeCarga(++elementosCargados, menuCarga);
+		
+		//Finalizo la carga de items
+		
+		itemsOFF.put("Pocion de Salud OFF", CargadorImagen.cargarImagen("/PocionSaludOFF.png"));
+		actualizarBarraDeCarga(++elementosCargados, menuCarga);
+		
+		itemsOFF.put("Pocion de Energia OFF", CargadorImagen.cargarImagen("/Pocion EnergiaOFF.png"));
+		actualizarBarraDeCarga(++elementosCargados, menuCarga);
+		
+		itemsOFF.put("Escudo OFF", CargadorImagen.cargarImagen("/EscudoOFF.png"));
+		actualizarBarraDeCarga(++elementosCargados, menuCarga);
+		
+		itemsOFF.put("Armamento OFF", CargadorImagen.cargarImagen("/ArmamentoOFF.png"));
+		actualizarBarraDeCarga(++elementosCargados, menuCarga);
+		
+		itemsOFF.put("Agua OFF", CargadorImagen.cargarImagen("/AguaOFF.png"));
+		actualizarBarraDeCarga(++elementosCargados, menuCarga);
+		
+		itemsOFF.put("Libros OFF", CargadorImagen.cargarImagen("/LibrosOFF.png"));
+		actualizarBarraDeCarga(++elementosCargados, menuCarga);
+		
+		itemsOFF.put("Varita Magica OFF", CargadorImagen.cargarImagen("/VaritaMagicaOFF.png"));
+		actualizarBarraDeCarga(++elementosCargados, menuCarga);
+		
+		itemsOFF.put("Veneno OFF", CargadorImagen.cargarImagen("/VenenoOFF.png"));
+		actualizarBarraDeCarga(++elementosCargados, menuCarga);
+		
+		itemsOFF.put("Pocion de Cansancio OFF", CargadorImagen.cargarImagen("/Pocion CansancioOFF.png"));
+		actualizarBarraDeCarga(++elementosCargados, menuCarga);
+		
+		itemsOFF.put("Lentitud OFF", CargadorImagen.cargarImagen("/LentitudOFF.png"));
+		actualizarBarraDeCarga(++elementosCargados, menuCarga);
+		
+		//Fin carga de Items Deshabilitados
 		menuBatalla = CargadorImagen.cargarImagen("/MenuBatalla.png");
 		actualizarBarraDeCarga(++elementosCargados, menuCarga);
 		
 		menuBatallaDeshabilitado = CargadorImagen.cargarImagen("/MenuBatallaDeshabilitado.png");
 		actualizarBarraDeCarga(++elementosCargados, menuCarga);
+		
+		barraItems = CargadorImagen.cargarImagen("/BarraItems.png");
+		actualizarBarraDeCarga(++elementosCargados, menuCarga);
+		
+		/*menuBatalla2 = CargadorImagen.cargarImagen("/MenuBatalla2.png");
+		actualizarBarraDeCarga(++elementosCargados, menuCarga);
+		
+		menuBatalla2Deshabilitado = CargadorImagen.cargarImagen("/MenuBatalla2Deshabilitado.png");
+		actualizarBarraDeCarga(++elementosCargados, menuCarga);*/
 		// Fin Batalla
+		
+		File fi = new File("Items.txt");
+		Scanner sc;
+		try {
+			sc = new Scanner(fi);
+			sc.useLocale(Locale.ENGLISH);
+			itemsExistentes = new Item[sc.nextInt()];
+			//int tam = sc.nextInt();
+			for (int i = 0; i<itemsExistentes.length; i++){
+				itemsExistentes[i] = new Item(i+1, sc.next(), sc.next(), sc.nextInt());
+				/*itemsExistentes[i].setId(i+1);
+				itemsExistentes[i].setNombre(sc.next());
+				itemsExistentes[i].setAtributoAModificar(sc.next());
+				itemsExistentes[i].setValor(sc.nextInt());*/
+			}
+			sc.close();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 
 	private static void actualizarBarraDeCarga(int elementosCargados, MenuCarga menuCarga) {

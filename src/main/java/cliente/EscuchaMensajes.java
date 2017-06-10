@@ -8,6 +8,7 @@ import javax.swing.JOptionPane;
 
 import com.google.gson.Gson;
 
+import dominio.DatosDePersonajeAReplicar;
 import estados.Estado;
 import estados.EstadoBatalla;
 import juego.Juego;
@@ -76,10 +77,13 @@ public class EscuchaMensajes extends Thread {
 					
 				case Comando.ATACAR:
 					paqueteAtacar = (PaqueteAtacar) gson.fromJson(objetoLeido, PaqueteAtacar.class);
-					juego.getEstadoBatalla().getEnemigo().setSalud(paqueteAtacar.getNuevaSaludPersonaje());
-					juego.getEstadoBatalla().getEnemigo().setEnergia(paqueteAtacar.getNuevaEnergiaPersonaje());
-					juego.getEstadoBatalla().getPersonaje().setSalud(paqueteAtacar.getNuevaSaludEnemigo());
-					juego.getEstadoBatalla().getPersonaje().setEnergia(paqueteAtacar.getNuevaEnergiaEnemigo());
+					
+					//MI IDEA fue que en el servidor los datos se actualicen siempre, y enviar al cliente
+					//la informacion para que actualice pantalla con la nueva informacion.
+					DatosDePersonajeAReplicar datoReplicarEnemigo=new DatosDePersonajeAReplicar(paqueteAtacar.getNuevaSaludEnemigo(), paqueteAtacar.getNuevaEnergiaEnemigo());
+					DatosDePersonajeAReplicar datoReplicarPersonaje = new DatosDePersonajeAReplicar(paqueteAtacar.getNuevaSaludPersonaje(), paqueteAtacar.getNuevaEnergiaPersonaje());
+					juego.getEstadoBatalla().getEnemigo().recibirDatosReplicadosDePersonaje(datoReplicarEnemigo);
+					juego.getEstadoBatalla().getPersonaje().recibirDatosReplicadosDePersonaje(datoReplicarPersonaje);
 					juego.getEstadoBatalla().setMiTurno(true);
 					break;
 					
@@ -102,7 +106,7 @@ public class EscuchaMensajes extends Thread {
 				}	
 			}
 		} catch (Exception e) {
-			JOptionPane.showMessageDialog(null, "Fallo la conexión con el servidor.");
+			JOptionPane.showMessageDialog(null, "Fallo la conexiï¿½n con el servidor.");
 			e.printStackTrace();
 		}
 	}

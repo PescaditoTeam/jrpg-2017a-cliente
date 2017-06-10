@@ -1,0 +1,11 @@
+10
+PocionSalud salud 50
+PocionEnergia energia 50
+Escudo defensa 100
+Armamento fuerza 50
+Agua destreza 30
+Libros inteligencia 20
+VaritaMagica magia 50
+Veneno salud -20
+Cansancio energia -30
+Lentitud destreza -35

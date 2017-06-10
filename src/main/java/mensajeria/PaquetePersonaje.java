@@ -2,6 +2,8 @@ package mensajeria;
 
 import java.io.Serializable;
 
+import dominio.Item;
+import dominio.Mochila;
 import estados.Estado;
 
 public class PaquetePersonaje extends Paquete implements Serializable, Cloneable {
@@ -19,10 +21,33 @@ public class PaquetePersonaje extends Paquete implements Serializable, Cloneable
 	private int inteligencia;
 	private int nivel;
 	private int experiencia;
+	private Mochila mochila;
 
 	public PaquetePersonaje() {
 		estado = Estado.estadoOffline;
+		mochila = new Mochila();
 	}
+
+	
+	public int getIdMapa() {
+		return idMapa;
+	}
+
+
+	public void setIdMapa(int idMapa) {
+		this.idMapa = idMapa;
+	}
+
+
+	public Mochila getMochila() {
+		return mochila;
+	}
+
+
+	public void setMochila(Item item) {
+		this.mochila.add(item);
+	}
+
 
 	public int getEstado() {
 		return estado;
