@@ -168,7 +168,7 @@ public class MenuBatalla {
 	}
 
 	public boolean clickEnMenu(int mouseX, int mouseY) {
-		if (mouseX >= x && mouseX <= x + Recursos.menuBatalla.getWidth() && mouseY >= y
+		if (mouseX >= x && mouseX <= x + Recursos.menuBatalla.getWidth() + 200 && mouseY >= y
 				&& mouseY <= y + Recursos.menuBatalla.getHeight())
 			return habilitado;
 		return false;

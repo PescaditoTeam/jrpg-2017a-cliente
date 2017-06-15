@@ -519,11 +519,7 @@ public class Recursos {
 			itemsExistentes = new Item[sc.nextInt()];
 			//int tam = sc.nextInt();
 			for (int i = 0; i<itemsExistentes.length; i++){
-				itemsExistentes[i] = new Item(i+1, sc.next(), sc.next(), sc.nextInt());
-				/*itemsExistentes[i].setId(i+1);
-				itemsExistentes[i].setNombre(sc.next());
-				itemsExistentes[i].setAtributoAModificar(sc.next());
-				itemsExistentes[i].setValor(sc.nextInt());*/
+				itemsExistentes[i] = new Item(i+1, sc.next(), sc.nextInt(), sc.nextInt(), sc.nextInt(), sc.nextInt(), sc.nextInt(), sc.nextInt(), sc.nextInt());
 			}
 			sc.close();
 		} catch (FileNotFoundException e) {

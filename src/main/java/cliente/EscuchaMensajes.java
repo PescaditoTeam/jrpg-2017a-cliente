@@ -80,10 +80,10 @@ public class EscuchaMensajes extends Thread {
 					
 					//MI IDEA fue que en el servidor los datos se actualicen siempre, y enviar al cliente
 					//la informacion para que actualice pantalla con la nueva informacion.
-					DatosDePersonajeAReplicar datoReplicarEnemigo=new DatosDePersonajeAReplicar(paqueteAtacar.getNuevaSaludEnemigo(), paqueteAtacar.getNuevaEnergiaEnemigo());
-					DatosDePersonajeAReplicar datoReplicarPersonaje = new DatosDePersonajeAReplicar(paqueteAtacar.getNuevaSaludPersonaje(), paqueteAtacar.getNuevaEnergiaPersonaje());
-					juego.getEstadoBatalla().getEnemigo().recibirDatosReplicadosDePersonaje(datoReplicarEnemigo);
-					juego.getEstadoBatalla().getPersonaje().recibirDatosReplicadosDePersonaje(datoReplicarPersonaje);
+					//DatosDePersonajeAReplicar datoReplicarEnemigo = new DatosDePersonajeAReplicar(paqueteAtacar.getNuevaSaludEnemigo(), paqueteAtacar.getNuevaEnergiaEnemigo());
+					//DatosDePersonajeAReplicar datoReplicarPersonaje = new DatosDePersonajeAReplicar(paqueteAtacar.getNuevaSaludPersonaje(), paqueteAtacar.getNuevaEnergiaPersonaje());
+					juego.getEstadoBatalla().getEnemigo().recibirDatosReplicadosDePersonajeAtacar(paqueteAtacar.getNuevaSaludPersonaje(), paqueteAtacar.getNuevaEnergiaPersonaje());
+					juego.getEstadoBatalla().getPersonaje().recibirDatosReplicadosDePersonajeAtacar(paqueteAtacar.getNuevaSaludEnemigo(), paqueteAtacar.getNuevaEnergiaEnemigo());
 					juego.getEstadoBatalla().setMiTurno(true);
 					break;
 					
