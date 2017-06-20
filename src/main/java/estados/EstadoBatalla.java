@@ -383,14 +383,12 @@ public class EstadoBatalla extends Estado {
 			paqueteEnemigo.setFuerza(enemigo.getFuerza());
 			paqueteEnemigo.setInteligencia(enemigo.getInteligencia());
 			*/
+			Item item = Recursos.itemsExistentes[1];
+			//Item item = Recursos.itemsExistentes[new MyRandom().obtenerAleatorioMenorQue(10)];
+			paquetePersonaje.setMochila(item);
 			
 			paquetePersonaje.setComando(Comando.ACTUALIZARPERSONAJE);
 			paqueteEnemigo.setComando(Comando.ACTUALIZARPERSONAJE);
-			
-			Item item = Recursos.itemsExistentes[new MyRandom().obtenerAleatorioMenorQue(10)];
-			personaje.setMochila2(item);
-			
-			
 			
 			juego.getCliente().getSalida().writeObject(gson.toJson(paquetePersonaje));
 			juego.getCliente().getSalida().writeObject(gson.toJson(paqueteEnemigo));
