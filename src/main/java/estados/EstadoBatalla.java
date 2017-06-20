@@ -356,15 +356,16 @@ public class EstadoBatalla extends Estado {
 	private void finalizarBatalla() {
 		try {
 			juego.getCliente().getSalida().writeObject(gson.toJson(paqueteFinalizarBatalla));
-			//Problema que el objeto se crea en cada Tick
-			DatosDePersonajeAReplicar datosRep = new DatosDePersonajeAReplicar(personaje.getSalud(),personaje.getEnergia(),
-					personaje.getFuerza(), personaje.getDestreza(), personaje.getInteligencia(),
-					personaje.getExperiencia(), personaje.getNivel(),personaje.getIdPersonaje(), personaje.getDefensa());
 
-			personaje.recibirDatosReplicadosDePersonaje(datosRep);
+			DatosDePersonajeAReplicar datosP = new DatosDePersonajeAReplicar(personaje.getSaludTope(), personaje.getEnergiaTope(), personaje.getFuerza(), 
+					personaje.getDestreza(), personaje.getInteligencia(), personaje.getExperiencia(), personaje.getNivel());;
+			paquetePersonaje.recibirDatosReplicadosDePersonaje(datosP);
 			
+			DatosDePersonajeAReplicar datosE = new DatosDePersonajeAReplicar(enemigo.getSaludTope(), enemigo.getEnergiaTope(),
+					enemigo.getFuerza(), enemigo.getDestreza(), enemigo.getInteligencia(), enemigo.getExperiencia(), 
+					enemigo.getNivel());
 			
-			
+			paqueteEnemigo.recibirDatosReplicadosDePersonaje(datosE);
 			/*
 			paquetePersonaje.setSaludTope(personaje.getSaludTope());
 			paquetePersonaje.setEnergiaTope(personaje.getEnergiaTope());

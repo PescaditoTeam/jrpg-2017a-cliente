@@ -2,6 +2,7 @@ package mensajeria;
 
 import java.io.Serializable;
 
+import dominio.DatosDePersonajeAReplicar;
 import dominio.Item;
 import dominio.Mochila;
 import estados.Estado;
@@ -173,5 +174,17 @@ public class PaquetePersonaje extends Paquete implements Serializable, Cloneable
 		Object obj = null;
 		obj = super.clone();
 		return obj;
+	}
+
+
+	public void recibirDatosReplicadosDePersonaje(DatosDePersonajeAReplicar p) {
+	    this.fuerza = p.getFuerza();
+	    this.destreza = p.getDestreza();
+	    this.inteligencia = p.getInteligencia();
+	    this.experiencia = p.getExperiencia();
+	    this.nivel = p.getNivel();
+	    this.saludTope = p.getSaludTope();
+	    this.energiaTope = p.getEnergiaTope();
+		
 	}
 }
