@@ -383,7 +383,7 @@ public class EstadoBatalla extends Estado {
 			paqueteEnemigo.setFuerza(enemigo.getFuerza());
 			paqueteEnemigo.setInteligencia(enemigo.getInteligencia());
 			*/
-			Item item = Recursos.itemsExistentes[1];
+			Item item = new Item(Recursos.itemsExistentes[1]);
 			//Item item = Recursos.itemsExistentes[new MyRandom().obtenerAleatorioMenorQue(10)];
 			paquetePersonaje.setMochila(item);
 			

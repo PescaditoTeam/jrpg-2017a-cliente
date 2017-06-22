@@ -1,5 +1,9 @@
 package mensajeria;
 
+/**
+ * Clase Comando Principal, de ella heredan ComandoCliente y ComandoServidor.
+ * 
+ */
 public class Comando {
 	
 	public static final int ACTUALIZARPERSONAJE = 11;
@@ -14,4 +18,21 @@ public class Comando {
 	public static final int MOVIMIENTO = 5;
 	public static final int REGISTRO = 6;
 	public static final int SALIR = 7;
+	/**
+	 * Cadena Leida.
+	 */
+	protected String cadenaLeida;
+	/**
+	 * @return cadenaLeida.
+	 */
+	public String getCadenaLeida() {
+		return cadenaLeida;
+	}
+	/**
+	 * @param cadenaLeida.
+	 * Metodo para setear la cadena leida.
+	 */
+	public void setCadenaLeida(String cadenaLeida) {
+		this.cadenaLeida = cadenaLeida;
+	}
 }
