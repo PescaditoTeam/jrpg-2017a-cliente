@@ -55,7 +55,7 @@ public class EstadoJuego extends Estado {
 			juego.getCliente().getSalida().writeObject(gson.toJson(juego.getPersonaje(), PaquetePersonaje.class));
 			juego.getCliente().getSalida().writeObject(gson.toJson(juego.getUbicacionPersonaje(), PaqueteMovimiento.class));
 		} catch (IOException e) {
-			JOptionPane.showMessageDialog(null, "Fallo la conexión con el servidor al ingresar al mundo.");
+			JOptionPane.showMessageDialog(null, "Fallo la conexiï¿½n con el servidor al ingresar al mundo.");
 			e.printStackTrace();
 		}
 	}
@@ -76,6 +76,7 @@ public class EstadoJuego extends Estado {
 		entidadPersonaje.graficarNombre(g);
 		g.drawImage(Recursos.marco, 0, 0, juego.getAncho(), juego.getAlto(), null);
 		EstadoDePersonaje.dibujarEstadoDePersonaje(g, 5, 5, paquetePersonaje, miniaturaPersonaje);
+		g.drawImage(Recursos.mercado, 738, 545, 59, 52, null);
 		if(haySolicitud)
 			menuEnemigo.graficar(g, tipoSolicitud);
 			

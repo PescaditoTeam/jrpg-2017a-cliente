@@ -4,7 +4,7 @@ package mensajeria;
  * Clase Comando Principal, de ella heredan ComandoCliente y ComandoServidor.
  * 
  */
-public class Comando {
+public abstract class Comando {
 	
 	public static final int ACTUALIZARPERSONAJE = 11;
 	public static final int ATACAR = 9;
@@ -35,4 +35,6 @@ public class Comando {
 	public void setCadenaLeida(String cadenaLeida) {
 		this.cadenaLeida = cadenaLeida;
 	}
+	
+	public abstract void resolver();
 }
