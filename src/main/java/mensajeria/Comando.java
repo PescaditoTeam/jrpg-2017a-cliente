@@ -1,11 +1,14 @@
 package mensajeria;
 
+import java.io.IOException;
+
 /**
  * Clase Comando Principal, de ella heredan ComandoCliente y ComandoServidor.
  * 
  */
 public abstract class Comando {
-	
+	public static final String[] COMANDOSSERVIDOR = { "Conexion", "CrecionPJ", "Desconectar", "InicioSesion", "MostrarMapas",
+			"Movimiento", "Registro", "Salir", "Batalla", "Atacar", "FinalizarBatalla", "ActualizarPersonaje"};
 	public static final int ACTUALIZARPERSONAJE = 11;
 	public static final int ATACAR = 9;
 	public static final int BATALLA = 8;
@@ -22,6 +25,9 @@ public abstract class Comando {
 	 * Cadena Leida.
 	 */
 	protected String cadenaLeida;
+	public Comando(String cadenaLeida){
+		this.cadenaLeida = cadenaLeida;
+	}
 	/**
 	 * @return cadenaLeida.
 	 */
@@ -36,5 +42,5 @@ public abstract class Comando {
 		this.cadenaLeida = cadenaLeida;
 	}
 	
-	public abstract void resolver();
+	public abstract void resolver() throws IOException;
 }
