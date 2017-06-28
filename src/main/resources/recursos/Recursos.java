@@ -534,4 +534,16 @@ public class Recursos {
 	private static void actualizarBarraDeCarga(int elementosCargados, MenuCarga menuCarga) {
 		menuCarga.setBarraCargando(elementosCargados * ANCHOBARRA / ELEMENTOS);
 	}
+
+	public static Item[] getItemsExistentes() {
+		return itemsExistentes;
+	}
+	public static String getItemsExistentesName(int pos) {
+		return itemsExistentes[pos].getNombre();
+	}
+
+	public static void setItemsExistentes(Item[] itemsExistentes) {
+		Recursos.itemsExistentes = itemsExistentes;
+	}
+	
 }

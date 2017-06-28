@@ -12,6 +12,9 @@ import javax.swing.JOptionPane;
 
 import com.google.gson.Gson;
 
+import estados.Estado;
+import frames.MenuMercado;
+import interfaz.MenuInfoPersonaje;
 import juego.Juego;
 import juego.Pantalla;
 import mensajeria.PaqueteBatalla;
@@ -20,15 +23,12 @@ import mundo.Grafo;
 import mundo.Mundo;
 import mundo.Nodo;
 import recursos.Recursos;
-import entidades.Animacion;
-import estados.Estado;
-import interfaz.MenuInfoPersonaje;
 
 public class Entidad {
 
 	Juego juego;
 
-	// Tama�o de la entidad
+	// Tamaï¿½o de la entidad
 	private int ancho;
 	private int alto;
 
@@ -146,6 +146,12 @@ public class Entidad {
 		posMouseRecorrido = juego.getHandlerMouse().getPosMouseRecorrido();
 		posMouse = juego.getHandlerMouse().getPosMouse();
 
+		if(juego.getHandlerMouse().getNuevoClick() && posMouse[0] >= 738 && posMouse[0] <= 797  && posMouse[1] >= 545 && posMouse[1] <= 597) {
+			MenuMercado menu = new MenuMercado(juego.getCliente());
+			menu.setVisible(true);
+			juego.getHandlerMouse().setNuevoClick(false);
+		}
+		
 		// Tomo el click izquierdo
 		if (juego.getHandlerMouse().getNuevoClick()) {
 			if (juego.getEstadoJuego().getHaySolicitud()) {
@@ -165,7 +171,7 @@ public class Entidad {
 							try {
 								juego.getCliente().getSalida().writeObject(gson.toJson(pBatalla));
 							} catch (IOException e) {
-								JOptionPane.showMessageDialog(null, "Fallo la conexi�n con el servidor");
+								JOptionPane.showMessageDialog(null, "Fallo la conexión con el servidor");
 								e.printStackTrace();
 							}
 						} else {
@@ -410,7 +416,7 @@ public class Entidad {
 			juego.getCliente().getSalida()
 					.writeObject(gson.toJson(juego.getUbicacionPersonaje(), PaqueteMovimiento.class));
 		} catch (IOException e) {
-			JOptionPane.showMessageDialog(null, "Fallo la conexi�n con el servidor.");
+			JOptionPane.showMessageDialog(null, "Fallo la conexión con el servidor.");
 			e.printStackTrace();
 		}
 	}
