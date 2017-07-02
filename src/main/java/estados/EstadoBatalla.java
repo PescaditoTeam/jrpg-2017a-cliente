@@ -374,9 +374,8 @@ public class EstadoBatalla extends Estado {
 			paqueteEnemigo.recibirDatosReplicadosDePersonaje(datosE);
 
 			MyRandom r = new MyRandom();
-			Item item = Recursos.itemsExistentes[r.obtenerAleatorioMenorQue(10)];
+			Item item = Recursos.getItemsExistentes()[r.obtenerAleatorioMenorQue(10)];
 			paquetePersonaje.setMochila(item);
-
 			paquetePersonaje.setComando(Comando.ACTUALIZARPERSONAJE);
 			paqueteEnemigo.setComando(Comando.ACTUALIZARPERSONAJE);
 			

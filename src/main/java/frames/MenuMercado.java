@@ -1,33 +1,33 @@
 package frames;
 
-import mensajeria.Comando;
-import recursos.Recursos;
-
 import java.awt.Color;
+import java.awt.Font;
+import java.awt.Point;
+import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JLayeredPane;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import cliente.Cliente;
-
-import java.awt.Font;
-import java.awt.Point;
-import java.awt.Toolkit;
-
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-import java.awt.event.ActionEvent;
-import javax.swing.JLayeredPane;
-import javax.swing.JComboBox;
+import dominio.Mercado;
+import mensajeria.Comando;
+import recursos.Recursos;
 
 public class MenuMercado extends JFrame {
 
 	private JPanel contentPane;
+	private Mercado mercado;
 
 	public MenuMercado(final Cliente cliente) {
 		
@@ -73,9 +73,7 @@ public class MenuMercado extends JFrame {
 			comboBoxDemanda.addItem(Recursos.getItemsExistentesName(i));
 		}
 		
-		JButton botonAceptar = new JButton("Aceptar");
-		botonAceptar.setBounds(171, 210, 102, 27);
-		layeredPane.add(botonAceptar);
+
 		
 		JComboBox comboBoxOferta = new JComboBox();
 		comboBoxOferta.setBounds(10, 136, 190, 20);
@@ -83,7 +81,6 @@ public class MenuMercado extends JFrame {
 		for(int i = 0; i < Recursos.getItemsExistentes().length; i++){
 			comboBoxOferta.addItem(Recursos.getItemsExistentesName(i));
 		}
-		//comboBoxOferta.addItem("Item 1");
 		
 		
 		JLabel labelDemandar = new JLabel("Demandar");
@@ -100,6 +97,12 @@ public class MenuMercado extends JFrame {
 		
 		
 		JButton botonVerOferta = new JButton("Ver Oferta");
+		botonVerOferta.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				OfertasDisponibles o = new OfertasDisponibles(cliente, mercado);
+				o.setVisible(true);
+			}
+		});
 		botonVerOferta.setBounds(298, 28, 117, 23);
 		layeredPane.add(botonVerOferta);
 		
@@ -108,6 +111,19 @@ public class MenuMercado extends JFrame {
 		layeredPane.add(labelMensaje);
 		labelMensaje.setForeground(Color.WHITE);
 		labelMensaje.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		JButton botonAceptar = new JButton("Aceptar");
+		botonAceptar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				if(cliente.getPaquetePersonaje().getMochila().getInventario()[comboBoxOferta.getSelectedIndex()] > 0){
+					mercado.AddOferta(comboBoxOferta.getSelectedIndex(), comboBoxDemanda.getSelectedIndex(), cliente.getPaqueteUsuario().getUsername());
+					
+				}else{
+					JOptionPane.showMessageDialog(null, "El item a ofertar no esta disponible en tu mochila");
+				}
+			}
+		});
+		botonAceptar.setBounds(171, 210, 102, 27);
+		layeredPane.add(botonAceptar);
 		
 		JLabel lblBackground = new JLabel("");
 		lblBackground.setBounds(0, 0, 444, 271);
