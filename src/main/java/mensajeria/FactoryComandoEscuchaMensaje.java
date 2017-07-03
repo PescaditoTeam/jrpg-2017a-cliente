@@ -25,6 +25,9 @@ public class FactoryComandoEscuchaMensaje {
 		case Comando.ACTUALIZARPERSONAJE:
 			comando = new ActualizarPersonajeCli(objetoLeido, em);
 			break;
+		case Comando.AGREGAROFERTA:
+			comando = new AgregarOfertaCli(objetoLeido, em);
+			break;
 		default:
 			return null;
 		}

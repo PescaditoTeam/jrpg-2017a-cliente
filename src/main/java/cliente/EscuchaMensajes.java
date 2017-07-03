@@ -1,6 +1,7 @@
 package cliente;
 
 import java.io.ObjectInputStream;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -9,6 +10,7 @@ import javax.swing.JOptionPane;
 import com.google.gson.Gson;
 
 import dominio.DatosDePersonajeAReplicar;
+import dominio.Ofertas;
 import estados.Estado;
 import estados.EstadoBatalla;
 import juego.Juego;
@@ -32,6 +34,7 @@ public class EscuchaMensajes extends Thread {
 	
 	private Map<Integer, PaqueteMovimiento> ubicacionPersonajes;
 	private Map<Integer, PaquetePersonaje> personajesConectados;
+	private static ArrayList<Ofertas> ofertasDisponibles = new ArrayList<Ofertas>();
 
 	public EscuchaMensajes(Juego juego) {
 		this.juego = juego;
@@ -51,6 +54,7 @@ public class EscuchaMensajes extends Thread {
 			PaqueteFinalizarBatalla paqueteFinalizarBatalla;
 			personajesConectados = new HashMap<>();
 			ubicacionPersonajes = new HashMap<>();
+			ofertasDisponibles = new ArrayList<Ofertas>();
 
 			while (true) {
 				
@@ -91,6 +95,17 @@ public class EscuchaMensajes extends Thread {
 
 	public void setUbicacionPersonajes(Map<Integer, PaqueteMovimiento> ubicacionPersonajes) {
 		this.ubicacionPersonajes = ubicacionPersonajes;
+	}
+
+	public static ArrayList<Ofertas> getOfertasDisponibles() {
+		return ofertasDisponibles;
+	}
+
+	public static void setOfertasDisponibles(ArrayList<Ofertas> ofertasDisponibles) {
+		EscuchaMensajes.ofertasDisponibles = ofertasDisponibles;
+	}
+	public static void AgregarOferta(Ofertas o){
+		ofertasDisponibles.add(o);
 	}
 	
 }
