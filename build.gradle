@@ -14,17 +14,16 @@ test.ignoreFailures = true
 defaultTasks 'clean', 'compileJava', 'test', 'checkstyleMain', 'pmd', 'findbugsMain', 'jacocoTestReport'
 
 sourceSets {
-    main {
-        java {
-            srcDirs 'src/main/resources'
-            srcDirs 'src/main/java'
-        }
-        resources {
-            srcDirs 'recursos'
-            
-        }
+	main {
+    java {
+      srcDirs 'src/main/resources'
+      srcDirs 'src/main/java'
     }
- }
+    resources {
+      srcDirs 'recursos'
+    }
+	}
+}
  
 repositories {
 	mavenCentral()
@@ -39,7 +38,7 @@ dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.+'
     pmdConf group: 'pmd', name: 'pmd', version: '4.3'
     compile files('gson-2.8.0.jar')
-    compile files('jrpg-dominio-0.1.jar')
+    compile files('DominioJAR.jar')
 }
 
 /*buildscript {

@@ -76,10 +76,12 @@ public class OfertasDisponibles extends JFrame {
 		comboBox.setBounds(32, 77, 389, 38);
 		layeredPane.add(comboBox);
 		for (int i = 0; i < mercado.getOfertas().size(); i++) {
-			comboBox.addItem("El Usuario" + mercado.getOfertas().get(i).getUser() + "ofrece el Item"
-					+ Recursos.getItemsExistentesName(mercado.getOfertas().get(i).getOfertado())
+			/*String s = "El Usuario" + mercado.getOfertas().get(i).getUser() + "ofrece el Item"
+					+ Recursos.getItemsExistentesName(mercado.getOfertas().get(i).getOfertado()).toString()
 					+ "y pide a cambio el Item"
-					+ Recursos.getItemsExistentesName(mercado.getOfertas().get(i).getDemandado()));
+					+ Recursos.getItemsExistentesName(mercado.getOfertas().get(i).getDemandado()).toString();*/
+			String s = "Hola";
+			comboBox.addItem(s);
 		}
 
 		JLabel lblBackground = new JLabel("");
