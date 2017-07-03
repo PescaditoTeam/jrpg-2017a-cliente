@@ -36,6 +36,7 @@ public class MenuMercado extends JFrame {
 	private Mercado mercado;
 	private PaqueteMercado paqueteMercado;
 	private Gson gson = new Gson();
+
 	public MenuMercado(final Cliente cliente) {
 
 		setCursor(Toolkit.getDefaultToolkit().createCustomCursor(
@@ -125,24 +126,38 @@ public class MenuMercado extends JFrame {
 		JButton botonAceptar = new JButton("Aceptar");
 		botonAceptar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				Ofertas o1 = new Ofertas();
 				if (cliente.getPaquetePersonaje().getMochila().getInventario()[comboBoxOferta.getSelectedIndex()] > 0) {
-					mercado.AddOferta(comboBoxOferta.getSelectedIndex(), comboBoxDemanda.getSelectedIndex(),
+					o1 = new Ofertas(comboBoxOferta.getSelectedIndex(), comboBoxDemanda.getSelectedIndex(),
 							cliente.getPaqueteUsuario().getUsername());
-					paqueteMercado.setOferta(new Ofertas(comboBoxOferta.getSelectedIndex(), comboBoxDemanda.getSelectedIndex(),
-							cliente.getPaqueteUsuario().getUsername()));
+					mercado.AddOferta(o1);
+					paqueteMercado.setOferta(o1);
 					paqueteMercado.setComando(Comando.AGREGAROFERTA);
-					
+
 					try {
 						cliente.getSalida().writeObject(gson.toJson(paqueteMercado));
 					} catch (IOException e) {
 						e.printStackTrace();
 					}
-					/*Servidor.AgregarOferta(new Ofertas(comboBoxOferta.getSelectedIndex(),
-							comboBoxDemanda.getSelectedIndex(), cliente.getPaqueteUsuario().getUsername()));*/
+					/*
+					 * Servidor.AgregarOferta(new
+					 * Ofertas(comboBoxOferta.getSelectedIndex(),
+					 * comboBoxDemanda.getSelectedIndex(),
+					 * cliente.getPaqueteUsuario().getUsername()));
+					 */
 				} else {
 					JOptionPane.showMessageDialog(null, "El item a ofertar no esta disponible en tu mochila");
 				}
+				for (int m = 0; m < mercado.getOfertas().size(); m++) {
+					if (mercado.getOfertas().get(m).getDemandado() == o1.getOfertado()
+							&& mercado.getOfertas().get(m).getOfertado() == o1.getDemandado()
+							&& mercado.getOfertas().get(m).getUser() != o1.getUser()) {
+						JOptionPane.showConfirmDialog(null,
+								"Hay coincidencia con la oferta de otro Usuario, ¿Queres Intercambiar?");
+					}
+				}
 			}
+
 		});
 		botonAceptar.setBounds(171, 210, 102, 27);
 		layeredPane.add(botonAceptar);

@@ -4,8 +4,11 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Point;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -18,6 +21,7 @@ import javax.swing.border.EmptyBorder;
 
 import cliente.Cliente;
 import dominio.Mercado;
+import dominio.Ofertas;
 import mensajeria.Comando;
 import recursos.Recursos;
 
@@ -27,6 +31,7 @@ public class OfertasDisponibles extends JFrame {
 
 	public OfertasDisponibles(final Cliente cliente, Mercado mercado) {
 
+		ArrayList<Ofertas> ofertas = new ArrayList<Ofertas>();
 		setCursor(Toolkit.getDefaultToolkit().createCustomCursor(
 				new ImageIcon(MenuJugar.class.getResource("/cursor.png")).getImage(), new Point(0, 0),
 				"custom cursor"));
@@ -63,6 +68,11 @@ public class OfertasDisponibles extends JFrame {
 		layeredPane.setLayout(null);
 
 		JButton btnAceptar = new JButton("Aceptar");
+		btnAceptar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
 		btnAceptar.setBounds(178, 195, 89, 23);
 		layeredPane.add(btnAceptar);
 
@@ -76,11 +86,13 @@ public class OfertasDisponibles extends JFrame {
 		comboBox.setBounds(32, 77, 389, 38);
 		layeredPane.add(comboBox);
 		for (int i = 0; i < mercado.getOfertas().size(); i++) {
-			String s = "El Usuario" + mercado.getOfertas().get(i).getUser() + "ofrece el Item"
+			String s = "El Usuario " + mercado.getOfertas().get(i).getUser() + " ofrece el Item "
 					+ Recursos.getItemsExistentesName(mercado.getOfertas().get(i).getOfertado()).toString()
-					+ "y pide a cambio el Item"
+					+ " y pide a cambio el Item "
 					+ Recursos.getItemsExistentesName(mercado.getOfertas().get(i).getDemandado()).toString();
 			comboBox.addItem(s);
+			//ofertas.add(mercado.getOfertas().get(i));
+			
 		}
 
 		JLabel lblBackground = new JLabel("");
