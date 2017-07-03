@@ -6,7 +6,7 @@ import cliente.EscuchaMensajes;
 import estados.Estado;
 import estados.EstadoBatalla;
 
-public class BatallaCli extends ComandoCliente {
+public class BatallaCli extends ComandoEscuchaMensajes {
 
 	public BatallaCli(String cadenaLeida, EscuchaMensajes e) {
 		super(cadenaLeida, e);

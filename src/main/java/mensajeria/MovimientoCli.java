@@ -5,7 +5,7 @@ import java.util.Map;
 
 import cliente.EscuchaMensajes;
 
-public class MovimientoCli extends ComandoCliente {
+public class MovimientoCli extends ComandoEscuchaMensajes {
 
 	public MovimientoCli(String cadenaLeida, EscuchaMensajes e) {
 		super(cadenaLeida, e);

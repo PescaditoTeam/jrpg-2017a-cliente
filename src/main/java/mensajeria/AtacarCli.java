@@ -4,7 +4,7 @@ import java.io.IOException;
 
 import cliente.EscuchaMensajes;
 
-public class AtacarCli extends ComandoCliente {
+public class AtacarCli extends ComandoEscuchaMensajes {
 
 	public AtacarCli(String cadenaLeida, EscuchaMensajes e) {
 		super(cadenaLeida, e);

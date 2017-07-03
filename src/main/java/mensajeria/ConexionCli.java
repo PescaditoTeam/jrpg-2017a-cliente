@@ -5,7 +5,7 @@ import java.util.Map;
 
 import cliente.EscuchaMensajes;
 
-public class ConexionCli extends ComandoCliente {
+public class ConexionCli extends ComandoEscuchaMensajes {
 
 	public ConexionCli(String cadenaLeida, EscuchaMensajes e) {
 		super(cadenaLeida, e);

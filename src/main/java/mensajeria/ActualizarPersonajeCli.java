@@ -4,7 +4,7 @@ import java.io.IOException;
 
 import cliente.EscuchaMensajes;
 
-public class ActualizarPersonajeCli extends ComandoCliente {
+public class ActualizarPersonajeCli extends ComandoEscuchaMensajes {
 
 	public ActualizarPersonajeCli(String cadenaLeida, EscuchaMensajes e) {
 		super(cadenaLeida, e);

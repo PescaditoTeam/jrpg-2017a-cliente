@@ -2,24 +2,16 @@ package mensajeria;
 
 import com.google.gson.Gson;
 
-import cliente.EscuchaMensajes;
+import cliente.Cliente;
+import juego.Juego;
 
 public abstract class ComandoCliente extends Comando{
 
-	public ComandoCliente(String cadenaLeida, EscuchaMensajes e) {
+	public ComandoCliente(String cadenaLeida) {
 		super(cadenaLeida);
-		escuchaMensajes = e;
 	}
-	Gson gson = new Gson();
-	protected EscuchaMensajes escuchaMensajes;
-	public EscuchaMensajes getEscuchaMensajes() {
-		return escuchaMensajes;
-	}
-
-	public void setEscuchaMensajes(EscuchaMensajes escuchaMensajes) {
-		this.escuchaMensajes = escuchaMensajes;
-	}
+	protected Cliente cliente;
+	protected Juego juego;
+	protected Gson gson = new Gson();
 	
-	
-
 }

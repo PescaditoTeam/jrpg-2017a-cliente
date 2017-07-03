@@ -71,6 +71,7 @@ public class Recursos {
 	public static BufferedImage nievePiso1;
 	public static BufferedImage iceBlock;
 	public static BufferedImage mercado;
+	public static BufferedImage chat;
 	// Fin Entorno
 
 	// Batalla
@@ -345,6 +346,7 @@ public class Recursos {
 		actualizarBarraDeCarga(++elementosCargados, menuCarga);
 		iceBlock = CargadorImagen.cargarImagen("/nieve cubo.png");
 		mercado = CargadorImagen.cargarImagen("/Mercado.png");
+		chat = CargadorImagen.cargarImagen("/Chat.png");
 		actualizarBarraDeCarga(++elementosCargados, menuCarga);
 		
 		// Mapa

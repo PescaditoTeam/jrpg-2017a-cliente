@@ -5,7 +5,7 @@ import java.io.IOException;
 import cliente.EscuchaMensajes;
 import estados.Estado;
 
-public class FinalizarBatallaCli extends ComandoCliente {
+public class FinalizarBatallaCli extends ComandoEscuchaMensajes {
 
 	public FinalizarBatallaCli(String cadenaLeida, EscuchaMensajes e) {
 		super(cadenaLeida, e);
