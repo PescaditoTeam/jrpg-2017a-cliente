@@ -149,8 +149,13 @@ public class Entidad {
 		if(juego.getHandlerMouse().getNuevoClick() && posMouse[0] >= 738 && posMouse[0] <= 797  && posMouse[1] >= 545 && posMouse[1] <= 597) {
 			MenuMercado menu = new MenuMercado(juego.getCliente());
 			menu.setVisible(true);
-			juego.getHandlerMouse().setNuevoClick(false);
+			juego.getHandlerMouse().setNuevoClick(false); 
 		}
+		if(juego.getHandlerMouse().getNuevoClick() && posMouse[0] >= 30 && posMouse[0] <= 89  && posMouse[1] >= 545 && posMouse[1] <= 597) {
+			// ACA ABRIR CHAT
+			juego.getHandlerMouse().setNuevoClick(false); 
+		}
+		
 		
 		// Tomo el click izquierdo
 		if (juego.getHandlerMouse().getNuevoClick()) {
