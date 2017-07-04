@@ -153,8 +153,8 @@ public class Entidad {
 			juego.getHandlerMouse().setNuevoClick(false); 
 		}
 		if(juego.getHandlerMouse().getNuevoClick() && posMouse[0] >= 384 && posMouse[0] <= 443  && posMouse[1] >= 545 && posMouse[1] <= 597) {
-			MenuMochila menu = new MenuMochila(juego.getCliente());
-			menu.setVisible(true);
+			MenuMochila menuMochila = new MenuMochila(juego.getCliente());
+			menuMochila.setVisible(true);
 			juego.getHandlerMouse().setNuevoClick(false); 
 		}
 		if(juego.getHandlerMouse().getNuevoClick() && posMouse[0] >= 30 && posMouse[0] <= 89  && posMouse[1] >= 545 && posMouse[1] <= 597) {

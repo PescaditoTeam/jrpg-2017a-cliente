@@ -66,8 +66,8 @@ public class MenuMochila extends JFrame{
 		JTextArea textArea = new JTextArea();
 		textArea.setBounds(10, 55, 424, 158);
 		layeredPane.add(textArea);
-		for(int i=0; i < cliente.getPaquetePersonaje().getMochila().getInventario().length; i++){
-			textArea.setText(Recursos.getItemsExistentesName(i) + "\t" + cliente.getPaquetePersonaje().getMochila().getInventario()[i] + "\n");
+		for(int i=0; i < Recursos.getItemsExistentes().length; i++){
+			textArea.setText(textArea.getText() + Recursos.getItemsExistentesName(i) + "\t" + cliente.getPaquetePersonaje().getMochila().getInventario()[i] + "\n");
 		}
 	
 		JLabel lblBackground = new JLabel("");
