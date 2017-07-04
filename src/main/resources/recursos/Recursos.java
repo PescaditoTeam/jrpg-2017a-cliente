@@ -72,6 +72,7 @@ public class Recursos {
 	public static BufferedImage iceBlock;
 	public static BufferedImage mercado;
 	public static BufferedImage chat;
+	public static BufferedImage mochila;
 	// Fin Entorno
 
 	// Batalla
@@ -347,6 +348,7 @@ public class Recursos {
 		iceBlock = CargadorImagen.cargarImagen("/nieve cubo.png");
 		mercado = CargadorImagen.cargarImagen("/Mercado.png");
 		chat = CargadorImagen.cargarImagen("/Chat.png");
+		mochila = CargadorImagen.cargarImagen("/Mochila2.png");
 		actualizarBarraDeCarga(++elementosCargados, menuCarga);
 		
 		// Mapa

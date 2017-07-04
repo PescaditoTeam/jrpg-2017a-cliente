@@ -14,6 +14,7 @@ import com.google.gson.Gson;
 
 import estados.Estado;
 import frames.MenuMercado;
+import frames.MenuMochila;
 import interfaz.MenuInfoPersonaje;
 import juego.Juego;
 import juego.Pantalla;
@@ -148,6 +149,11 @@ public class Entidad {
 
 		if(juego.getHandlerMouse().getNuevoClick() && posMouse[0] >= 738 && posMouse[0] <= 797  && posMouse[1] >= 545 && posMouse[1] <= 597) {
 			MenuMercado menu = new MenuMercado(juego.getCliente());
+			menu.setVisible(true);
+			juego.getHandlerMouse().setNuevoClick(false); 
+		}
+		if(juego.getHandlerMouse().getNuevoClick() && posMouse[0] >= 384 && posMouse[0] <= 443  && posMouse[1] >= 545 && posMouse[1] <= 597) {
+			MenuMochila menu = new MenuMochila(juego.getCliente());
 			menu.setVisible(true);
 			juego.getHandlerMouse().setNuevoClick(false); 
 		}
