@@ -135,7 +135,7 @@ public class MenuMercado extends JFrame {
                     o1 = new Ofertas(comboBoxOferta.getSelectedIndex(),
                             comboBoxDemanda.getSelectedIndex(),
                             cliente.getPaqueteUsuario().getUsername(),
-                            cliente.getPaqueteUsuario().getIdPj());
+                            cliente.getPaquetePersonaje().getId());
                     // mercado.AddOferta(o1);
                     paqueteMercado.setOferta(o1);
                     paqueteMercado.setComando(Comando.AGREGAROFERTA);
@@ -146,12 +146,6 @@ public class MenuMercado extends JFrame {
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-                    /*
-                     * Servidor.AgregarOferta(new
-                     * Ofertas(comboBoxOferta.getSelectedIndex(),
-                     * comboBoxDemanda.getSelectedIndex(),
-                     * cliente.getPaqueteUsuario().getUsername()));
-                     */
                 } else {
                     JOptionPane.showMessageDialog(null,
                             "El item a ofertar no esta disponible en tu mochila");
@@ -175,6 +169,15 @@ public class MenuMercado extends JFrame {
                             try {
                                 cliente.getSalida()
                                         .writeObject(gson.toJson(paqueteIntercambio));
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                            mercado.sacar(o1);
+                            paqueteMercado.setComando(Comando.AGREGAROFERTA);
+
+                            try {
+                                cliente.getSalida()
+                                        .writeObject(gson.toJson(paqueteMercado));
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }

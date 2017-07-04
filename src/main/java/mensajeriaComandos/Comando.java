@@ -23,6 +23,7 @@ public abstract class Comando {
 	public static final int SALIR = 7;
 	public static final int AGREGAROFERTA = 12;
     public static final int INTERCAMBIAR = 13;
+    public static final int ACTUALIZARINTERCAMBIO = 14;
 	/**
 	 * Cadena Leida.
 	 */

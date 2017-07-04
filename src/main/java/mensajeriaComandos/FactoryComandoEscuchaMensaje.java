@@ -28,6 +28,12 @@ public class FactoryComandoEscuchaMensaje {
 		case Comando.AGREGAROFERTA:
 			comando = new AgregarOfertaCli(objetoLeido, em);
 			break;
+		case Comando.ACTUALIZARINTERCAMBIO:
+		    comando = new ActualizarIntercambioCli(objetoLeido, em);
+		    break;
+		case Comando.INTERCAMBIAR:
+		    comando = new IntercambiarCli(objetoLeido, em);
+		    break;
 		default:
 			return null;
 		}

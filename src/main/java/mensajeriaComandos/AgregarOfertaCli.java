@@ -17,7 +17,7 @@ public class AgregarOfertaCli extends ComandoEscuchaMensajes {
 	public void resolver() throws IOException {
 		PaqueteMercado paqueteMercado = new PaqueteMercado();
 		paqueteMercado = (PaqueteMercado) gson.fromJson(cadenaLeida, PaqueteMercado.class);
-		escuchaMensajes.AgregarOferta(paqueteMercado.getOferta());
+		EscuchaMensajes.AgregarOferta(paqueteMercado.getOferta());
 	}
 
 }
