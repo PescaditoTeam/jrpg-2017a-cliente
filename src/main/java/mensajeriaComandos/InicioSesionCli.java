@@ -1,10 +1,12 @@
-package mensajeria;
+package mensajeriaComandos;
 
 import java.io.IOException;
 
 import javax.swing.JOptionPane;
 
 import cliente.Cliente;
+import mensajeria.Paquete;
+import mensajeria.PaquetePersonaje;
 
 public class InicioSesionCli extends ComandoCliente{
 

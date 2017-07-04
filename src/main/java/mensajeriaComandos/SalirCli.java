@@ -1,9 +1,9 @@
-package mensajeria;
+package mensajeriaComandos;
 
 import java.io.IOException;
 
 import cliente.Cliente;
-import cliente.EscuchaMensajes;
+import mensajeria.Paquete;
 
 public class SalirCli extends ComandoCliente {
 

@@ -26,8 +26,8 @@ import cliente.Cliente;
 import cliente.EscuchaMensajes;
 import dominio.Mercado;
 import dominio.Ofertas;
-import mensajeria.Comando;
 import mensajeria.PaqueteMercado;
+import mensajeriaComandos.Comando;
 import recursos.Recursos;
 
 public class MenuMercado extends JFrame {

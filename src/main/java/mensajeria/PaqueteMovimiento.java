@@ -2,6 +2,8 @@ package mensajeria;
 
 import java.io.Serializable;
 
+import mensajeriaComandos.Comando;
+
 public class PaqueteMovimiento extends Paquete implements Serializable, Cloneable {
 
 	private int id;

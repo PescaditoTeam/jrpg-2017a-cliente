@@ -1,7 +1,7 @@
 package juego;
 
 import cliente.Cliente;
-import mensajeria.Comando;
+import mensajeriaComandos.Comando;
 import recursos.Recursos;
 
 public class CargarRecursos extends Thread {

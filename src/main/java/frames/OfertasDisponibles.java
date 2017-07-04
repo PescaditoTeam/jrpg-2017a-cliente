@@ -22,7 +22,7 @@ import javax.swing.border.EmptyBorder;
 import cliente.Cliente;
 import dominio.Mercado;
 import dominio.Ofertas;
-import mensajeria.Comando;
+import mensajeriaComandos.Comando;
 import recursos.Recursos;
 
 public class OfertasDisponibles extends JFrame {

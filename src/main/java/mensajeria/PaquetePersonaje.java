@@ -22,11 +22,10 @@ public class PaquetePersonaje extends Paquete implements Serializable, Cloneable
 	private int inteligencia;
 	private int nivel;
 	private int experiencia;
-	private Mochila mochila;
+	private Mochila mochila = new Mochila();
 
 	public PaquetePersonaje() {
 		estado = Estado.estadoOffline;
-		mochila = new Mochila();
 	}
 
 	

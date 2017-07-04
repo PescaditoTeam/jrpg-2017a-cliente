@@ -1,4 +1,4 @@
-package mensajeria;
+package mensajeriaComandos;
 
 import java.io.IOException;
 

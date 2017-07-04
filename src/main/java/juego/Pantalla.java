@@ -20,8 +20,8 @@ import com.google.gson.Gson;
 
 import cliente.Cliente;
 import frames.MenuJugar;
-import mensajeria.Comando;
 import mensajeria.Paquete;
+import mensajeriaComandos.Comando;
 
 public class Pantalla {
 
@@ -52,7 +52,7 @@ public class Pantalla {
 					cliente.getSocket().close();
 					System.exit(0);
 				} catch (IOException e) {
-					JOptionPane.showMessageDialog(null, "Fallo al intentar cerrar la aplicación.");
+					JOptionPane.showMessageDialog(null, "Fallo al intentar cerrar la aplicaciï¿½n.");
 					System.exit(1);
 					e.printStackTrace();
 				}

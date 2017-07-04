@@ -1,9 +1,11 @@
-package mensajeria;
+package mensajeriaComandos;
 
 import java.io.IOException;
 import java.util.Map;
 
 import cliente.EscuchaMensajes;
+import mensajeria.PaqueteDeMovimientos;
+import mensajeria.PaqueteMovimiento;
 
 public class MovimientoCli extends ComandoEscuchaMensajes {
 

@@ -1,9 +1,11 @@
-package mensajeria;
+package mensajeriaComandos;
 
 import java.io.IOException;
 import java.util.Map;
 
 import cliente.EscuchaMensajes;
+import mensajeria.PaqueteDePersonajes;
+import mensajeria.PaquetePersonaje;
 
 public class ConexionCli extends ComandoEscuchaMensajes {
 

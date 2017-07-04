@@ -9,21 +9,16 @@ import javax.swing.JOptionPane;
 
 import com.google.gson.Gson;
 
-import dominio.DatosDePersonajeAReplicar;
 import dominio.Ofertas;
-import estados.Estado;
-import estados.EstadoBatalla;
 import juego.Juego;
-import mensajeria.Comando;
-import mensajeria.FactoryComandoEscuchaMensaje;
 import mensajeria.Paquete;
 import mensajeria.PaqueteAtacar;
 import mensajeria.PaqueteBatalla;
-import mensajeria.PaqueteDeMovimientos;
-import mensajeria.PaqueteDePersonajes;
 import mensajeria.PaqueteFinalizarBatalla;
 import mensajeria.PaqueteMovimiento;
 import mensajeria.PaquetePersonaje;
+import mensajeriaComandos.Comando;
+import mensajeriaComandos.FactoryComandoEscuchaMensaje;
 
 public class EscuchaMensajes extends Thread {
 

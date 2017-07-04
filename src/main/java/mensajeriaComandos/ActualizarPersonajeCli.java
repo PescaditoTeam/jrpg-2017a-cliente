@@ -1,8 +1,9 @@
-package mensajeria;
+package mensajeriaComandos;
 
 import java.io.IOException;
 
 import cliente.EscuchaMensajes;
+import mensajeria.PaquetePersonaje;
 
 public class ActualizarPersonajeCli extends ComandoEscuchaMensajes {
 

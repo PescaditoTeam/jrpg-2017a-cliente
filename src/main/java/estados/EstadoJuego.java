@@ -19,9 +19,9 @@ import interfaz.EstadoDePersonaje;
 import interfaz.MenuInfoPersonaje;
 import juego.Juego;
 import juego.Pantalla;
-import mensajeria.Comando;
 import mensajeria.PaqueteMovimiento;
 import mensajeria.PaquetePersonaje;
+import mensajeriaComandos.Comando;
 import mundo.Mundo;
 import recursos.Recursos;
 

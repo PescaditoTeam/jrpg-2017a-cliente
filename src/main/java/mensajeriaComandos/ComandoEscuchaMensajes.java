@@ -1,4 +1,4 @@
-package mensajeria;
+package mensajeriaComandos;
 
 import com.google.gson.Gson;
 

@@ -25,11 +25,11 @@ import interfaz.EstadoDePersonaje;
 import interfaz.MenuBatalla;
 import interfaz.MenuInfoPersonaje;
 import juego.Juego;
-import mensajeria.Comando;
 import mensajeria.PaqueteAtacar;
 import mensajeria.PaqueteBatalla;
 import mensajeria.PaqueteFinalizarBatalla;
 import mensajeria.PaquetePersonaje;
+import mensajeriaComandos.Comando;
 import mundo.Mundo;
 import recursos.Recursos;
 
@@ -373,9 +373,9 @@ public class EstadoBatalla extends Estado {
 
 			paqueteEnemigo.recibirDatosReplicadosDePersonaje(datosE);
 
-			MyRandom r = new MyRandom();
+			/*MyRandom r = new MyRandom();
 			Item item = Recursos.getItemsExistentes()[r.obtenerAleatorioMenorQue(10)];
-			paquetePersonaje.setMochila(item);
+			paquetePersonaje.setMochila(item);*/
 			paquetePersonaje.setComando(Comando.ACTUALIZARPERSONAJE);
 			paqueteEnemigo.setComando(Comando.ACTUALIZARPERSONAJE);
 			

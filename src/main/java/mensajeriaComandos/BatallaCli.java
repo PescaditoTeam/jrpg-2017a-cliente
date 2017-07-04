@@ -1,10 +1,11 @@
-package mensajeria;
+package mensajeriaComandos;
 
 import java.io.IOException;
 
 import cliente.EscuchaMensajes;
 import estados.Estado;
 import estados.EstadoBatalla;
+import mensajeria.PaqueteBatalla;
 
 public class BatallaCli extends ComandoEscuchaMensajes {
 

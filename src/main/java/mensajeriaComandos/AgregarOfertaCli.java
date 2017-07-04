@@ -1,8 +1,9 @@
-package mensajeria;
+package mensajeriaComandos;
 
 import java.io.IOException;
 
 import cliente.EscuchaMensajes;
+import mensajeria.PaqueteMercado;
 
 
 public class AgregarOfertaCli extends ComandoEscuchaMensajes {

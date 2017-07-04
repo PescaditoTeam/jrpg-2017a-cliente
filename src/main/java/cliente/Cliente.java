@@ -13,15 +13,14 @@ import javax.swing.JOptionPane;
 import com.google.gson.Gson;
 
 import frames.MenuCarga;
-import frames.MenuCreacionPj;
 import frames.MenuJugar;
 import frames.MenuMapas;
 import juego.Juego;
-import mensajeria.Comando;
-import mensajeria.FactoryComandoCliente;
 import mensajeria.Paquete;
 import mensajeria.PaquetePersonaje;
 import mensajeria.PaqueteUsuario;
+import mensajeriaComandos.Comando;
+import mensajeriaComandos.FactoryComandoCliente;
 
 public class Cliente extends Thread {
 	

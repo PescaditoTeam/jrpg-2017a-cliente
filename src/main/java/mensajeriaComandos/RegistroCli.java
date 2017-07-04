@@ -1,4 +1,4 @@
-package mensajeria;
+package mensajeriaComandos;
 
 import java.io.IOException;
 
@@ -8,6 +8,8 @@ import com.google.gson.JsonSyntaxException;
 
 import cliente.Cliente;
 import frames.MenuCreacionPj;
+import mensajeria.Paquete;
+import mensajeria.PaquetePersonaje;
 
 public class RegistroCli extends ComandoCliente{
 
