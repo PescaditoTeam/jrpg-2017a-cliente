@@ -24,6 +24,7 @@ public abstract class Comando {
 	public static final int AGREGAROFERTA = 12;
     public static final int INTERCAMBIAR = 13;
     public static final int ACTUALIZARINTERCAMBIO = 14;
+    public static final int SACAROFERTA = 15;
 	/**
 	 * Cadena Leida.
 	 */

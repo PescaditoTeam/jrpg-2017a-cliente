@@ -34,6 +34,9 @@ public class FactoryComandoEscuchaMensaje {
 		case Comando.INTERCAMBIAR:
 		    comando = new IntercambiarCli(objetoLeido, em);
 		    break;
+		case Comando.SACAROFERTA:
+		    comando = new SacarOfertaCli(objetoLeido, em);
+		    break;
 		default:
 			return null;
 		}

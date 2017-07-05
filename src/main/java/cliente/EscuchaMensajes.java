@@ -103,4 +103,12 @@ public class EscuchaMensajes extends Thread {
 		ofertasDisponibles.add(o);
 	}
 	
+	public static void SacarOferta(Ofertas o1, Ofertas o2){
+	    int index1 = ofertasDisponibles.indexOf(o1);
+	    ofertasDisponibles.remove(index1);
+	    int index2 = ofertasDisponibles.indexOf(o1);
+        ofertasDisponibles.remove(index2);
+        
+	}
+	
 }

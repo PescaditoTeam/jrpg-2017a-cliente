@@ -103,28 +103,7 @@ public class MenuMercado extends JFrame {
         labelOfertar.setForeground(Color.WHITE);
         labelOfertar.setFont(new Font("Tahoma", Font.PLAIN, 15));
 
-        JButton botonVerOferta = new JButton("Ver Ofertas");
-        botonVerOferta.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                OfertasDisponibles o = new OfertasDisponibles(cliente, mercado);
-                o.setVisible(true);
-            }
-        });
-        botonVerOferta.setBounds(298, 28, 117, 23);
-        layeredPane.add(botonVerOferta);
 
-        JLabel labelMensaje = new JLabel("");
-        labelMensaje.setBounds(28, 24, 260, 27);
-        layeredPane.add(labelMensaje);
-        labelMensaje.setForeground(Color.WHITE);
-        labelMensaje.setFont(new Font("Tahoma", Font.PLAIN, 15));
-        if (!mercado.getOfertas().isEmpty()) {
-            labelMensaje.setText("Hay Ofertas");
-            botonVerOferta.setEnabled(true);
-        } else {
-            labelMensaje.setText("NO Hay Ofertas");
-            botonVerOferta.setEnabled(false);
-        }
         JButton botonAceptar = new JButton("Aceptar");
         botonAceptar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent arg0) {
@@ -172,15 +151,17 @@ public class MenuMercado extends JFrame {
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }
-                            mercado.sacar(o1);
-                            /*paqueteMercado.setComando(Comando.AGREGAROFERTA);
-
+                            //mercado.sacar(o1);
+                            PaqueteMercado paqueteMercado = new PaqueteMercado();
+                            paqueteMercado.setOferta(o1);
+                            paqueteMercado.setOferta2(mercado.getOfertas().get(m));
+                            paqueteMercado.setComando(Comando.SACAROFERTA);
                             try {
                                 cliente.getSalida()
                                         .writeObject(gson.toJson(paqueteMercado));
                             } catch (IOException e) {
                                 e.printStackTrace();
-                            }*/
+                            }
                         }
                         break;
                     }
@@ -192,6 +173,28 @@ public class MenuMercado extends JFrame {
         botonAceptar.setBounds(171, 210, 102, 27);
         layeredPane.add(botonAceptar);
 
+        JButton botonVerOferta = new JButton("Ver Ofertas");
+        botonVerOferta.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                OfertasDisponibles o = new OfertasDisponibles(cliente, mercado);
+                o.setVisible(true);
+            }
+        });
+        botonVerOferta.setBounds(298, 28, 117, 23);
+        layeredPane.add(botonVerOferta);
+
+        JLabel labelMensaje = new JLabel("");
+        labelMensaje.setBounds(28, 24, 260, 27);
+        layeredPane.add(labelMensaje);
+        labelMensaje.setForeground(Color.WHITE);
+        labelMensaje.setFont(new Font("Tahoma", Font.PLAIN, 15));
+        if (!mercado.getOfertas().isEmpty()) {
+            labelMensaje.setText("Hay Ofertas");
+            botonVerOferta.setEnabled(true);
+        } else {
+            labelMensaje.setText("NO Hay Ofertas");
+            botonVerOferta.setEnabled(false);
+        }
         JLabel lblBackground = new JLabel("");
         lblBackground.setBounds(0, 0, 444, 271);
         layeredPane.add(lblBackground);

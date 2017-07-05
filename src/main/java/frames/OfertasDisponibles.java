@@ -83,7 +83,7 @@ public class OfertasDisponibles extends JFrame {
 		lblElijeUnaOferta.setFont(new Font("Tahoma", Font.PLAIN, 15));
 
 		JComboBox<String> comboBox = new JComboBox<String>();
-		comboBox.setBounds(32, 77, 389, 38);
+		comboBox.setBounds(15, 77, 425, 38);
 		layeredPane.add(comboBox);
 		for (int i = 0; i < mercado.getOfertas().size(); i++) {
 			String s = "El Usuario " + mercado.getOfertas().get(i).getUser() + " ofrece el Item "
@@ -91,7 +91,6 @@ public class OfertasDisponibles extends JFrame {
 					+ " y pide a cambio el Item "
 					+ Recursos.getItemsExistentesName(mercado.getOfertas().get(i).getDemandado()).toString();
 			comboBox.addItem(s);
-			//ofertas.add(mercado.getOfertas().get(i));
 			
 		}
 
