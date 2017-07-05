@@ -41,7 +41,7 @@ public class Cliente extends Thread {
 	
 	// Ip y puerto
 	private String ip;
-	private int puerto=9999;
+	private int puerto = 9999;
 
 	public int getAccion() {
 		return accion;
@@ -61,10 +61,10 @@ public class Cliente extends Thread {
 	        if(ip == null) {
 	            ip = "localhost";
 	        }
-	         puerto = Integer.parseInt(JOptionPane.showInputDialog("Ingrese Puerto:"));
+	         /*puerto = Integer.parseInt(JOptionPane.showInputDialog("Ingrese Puerto:"));
 	            if(puerto == 0) {
 	                puerto = 9999;
-	            }
+	            }*/
 		/*try {
 			sc = new Scanner(new File("config.txt"));
 			ip = sc.nextLine();

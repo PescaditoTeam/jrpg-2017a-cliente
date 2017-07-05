@@ -103,7 +103,7 @@ public class MenuMercado extends JFrame {
         labelOfertar.setForeground(Color.WHITE);
         labelOfertar.setFont(new Font("Tahoma", Font.PLAIN, 15));
 
-        JButton botonVerOferta = new JButton("Ver Oferta");
+        JButton botonVerOferta = new JButton("Ver Ofertas");
         botonVerOferta.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 OfertasDisponibles o = new OfertasDisponibles(cliente, mercado);
@@ -173,14 +173,14 @@ public class MenuMercado extends JFrame {
                                 e.printStackTrace();
                             }
                             mercado.sacar(o1);
-                            paqueteMercado.setComando(Comando.AGREGAROFERTA);
+                            /*paqueteMercado.setComando(Comando.AGREGAROFERTA);
 
                             try {
                                 cliente.getSalida()
                                         .writeObject(gson.toJson(paqueteMercado));
                             } catch (IOException e) {
                                 e.printStackTrace();
-                            }
+                            }*/
                         }
                         break;
                     }

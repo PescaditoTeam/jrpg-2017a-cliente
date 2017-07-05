@@ -9,6 +9,5 @@
 	<classpathentry exported="true" kind="lib" path="gson-2.8.0.jar"/>
 	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/dominio"/>
-	<classpathentry kind="lib" path="C:/Users/Usuario/Dropbox/Documents/Eclipse/DominioJAR.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
