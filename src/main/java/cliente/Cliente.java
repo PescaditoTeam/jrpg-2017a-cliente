@@ -41,7 +41,7 @@ public class Cliente extends Thread {
 	
 	// Ip y puerto
 	private String ip;
-	private int puerto;
+	private int puerto=9999;
 
 	public int getAccion() {
 		return accion;
@@ -56,9 +56,16 @@ public class Cliente extends Thread {
 
 	public Cliente() {
 		
-		Scanner sc;
-		
-		try {
+		//Scanner sc;
+	      ip = JOptionPane.showInputDialog("Ingrese IP:");
+	        if(ip == null) {
+	            ip = "localhost";
+	        }
+	         puerto = Integer.parseInt(JOptionPane.showInputDialog("Ingrese Puerto:"));
+	            if(puerto == 0) {
+	                puerto = 9999;
+	            }
+		/*try {
 			sc = new Scanner(new File("config.txt"));
 			ip = sc.nextLine();
 			puerto = sc.nextInt();
@@ -66,7 +73,7 @@ public class Cliente extends Thread {
 		} catch (FileNotFoundException e) {
 			JOptionPane.showMessageDialog(null, "No se ha encontrado el archivo de configuraci�n config.txt");
 			e.printStackTrace();
-		}
+		}*/
 		
 		try {
 			cliente = new Socket(ip, puerto);
@@ -79,6 +86,19 @@ public class Cliente extends Thread {
 			e.printStackTrace();
 		}
 	}
+	   public Cliente(String ip, int puerto) {
+	        try {
+	            cliente = new Socket(ip, puerto);
+	            miIp = cliente.getInetAddress().getHostAddress();
+	            entrada = new ObjectInputStream(cliente.getInputStream());
+	            salida = new ObjectOutputStream(cliente.getOutputStream());
+	        } catch (IOException e) {
+	            JOptionPane.showMessageDialog(null, "Fallo al iniciar la aplicación. "
+	                    + "Revise la conexión con el servidor.");
+	            System.exit(1);
+	            e.printStackTrace();
+	        }
+	    }
 
 	public void run() {
 		synchronized(this){

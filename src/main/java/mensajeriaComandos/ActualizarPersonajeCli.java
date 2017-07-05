@@ -22,6 +22,7 @@ public class ActualizarPersonajeCli extends ComandoEscuchaMensajes {
 		if(escuchaMensajes.getJuego().getPersonaje().getId() == paquetePersonaje.getId()) {
 			escuchaMensajes.getJuego().actualizarPersonaje();
 			escuchaMensajes.getJuego().getEstadoJuego().actualizarPersonaje();
+			escuchaMensajes.getJuego().getCliente().setPaquetePersonaje(paquetePersonaje);
 		}
 	}
 

@@ -23,8 +23,24 @@ public class PaquetePersonaje extends Paquete implements Serializable, Cloneable
 	private int nivel;
 	private int experiencia;
 	private Mochila mochila = new Mochila();
+	private boolean gano = false;
 
-	public PaquetePersonaje() {
+	public boolean isGano() {
+        return gano;
+    }
+
+
+    public void setGano(boolean gano) {
+        this.gano = gano;
+    }
+
+
+    public void setMochila(Mochila mochila) {
+        this.mochila = mochila;
+    }
+
+
+    public PaquetePersonaje() {
 		estado = Estado.estadoOffline;
 	}
 

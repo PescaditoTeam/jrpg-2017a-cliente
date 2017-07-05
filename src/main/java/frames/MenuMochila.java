@@ -22,10 +22,18 @@ import recursos.Recursos;
 
 import javax.swing.JList;
 import javax.swing.JTextArea;
+import javax.swing.JTable;
+import java.awt.Color;
+import javax.swing.border.SoftBevelBorder;
+import javax.swing.border.BevelBorder;
+import javax.swing.border.LineBorder;
+import java.awt.Font;
+import javax.swing.table.DefaultTableModel;
 
 public class MenuMochila extends JFrame{
 
 	private JPanel contentPane;
+	private JTable table;
 
 	public MenuMochila(final Cliente cliente) {
 
@@ -63,12 +71,31 @@ public class MenuMochila extends JFrame{
 		contentPane.add(layeredPane);
 		layeredPane.setLayout(null);
 		
-		JTextArea textArea = new JTextArea();
-		textArea.setBounds(10, 55, 424, 158);
-		layeredPane.add(textArea);
-		for(int i=0; i < Recursos.getItemsExistentes().length; i++){
-			textArea.setText(textArea.getText() + Recursos.getItemsExistentesName(i) + "\t" + cliente.getPaquetePersonaje().getMochila().getInventario()[i] + "\n");
-		}
+		table = new JTable();
+		table.setForeground(Color.GREEN);
+		table.setModel(new DefaultTableModel(
+		    new Object[][] {
+		        {"Item:", "Cantidad:"},
+		        {Recursos.getItemsExistentesName(0), cliente.getPaquetePersonaje().getMochila().getInventario()[0]},
+		        {Recursos.getItemsExistentesName(1), cliente.getPaquetePersonaje().getMochila().getInventario()[1]},
+		        {Recursos.getItemsExistentesName(2), cliente.getPaquetePersonaje().getMochila().getInventario()[2]},
+		        {Recursos.getItemsExistentesName(3), cliente.getPaquetePersonaje().getMochila().getInventario()[3]},
+		        {Recursos.getItemsExistentesName(4), cliente.getPaquetePersonaje().getMochila().getInventario()[4]},
+		        {Recursos.getItemsExistentesName(5), cliente.getPaquetePersonaje().getMochila().getInventario()[5]},
+		        {Recursos.getItemsExistentesName(6), cliente.getPaquetePersonaje().getMochila().getInventario()[6]},
+		        {Recursos.getItemsExistentesName(7), cliente.getPaquetePersonaje().getMochila().getInventario()[7]},
+		        {Recursos.getItemsExistentesName(8), cliente.getPaquetePersonaje().getMochila().getInventario()[8]},
+		        {Recursos.getItemsExistentesName(9), cliente.getPaquetePersonaje().getMochila().getInventario()[9]},
+		    },
+		    new String[] {
+		        "Item", "Cantidad"
+		    }
+		));
+		table.setFont(new Font("Tahoma", Font.BOLD, 13));
+		table.setBorder(new LineBorder(Color.GREEN, 2));
+		table.setBackground(Color.BLACK);
+		table.setBounds(120, 32, 198, 176);
+		layeredPane.add(table);
 	
 		JLabel lblBackground = new JLabel("");
 		lblBackground.setBounds(0, 0, 444, 271);
