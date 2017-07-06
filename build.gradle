@@ -11,7 +11,7 @@ sourceCompatibility = 1.7
 version = '0.1'
 test.ignoreFailures = true
 
-defaultTasks 'clean', 'compileJava', 'test', 'checkstyleMain', 'pmd', 'findbugsMain', 'jacocoTestReport'
+defaultTasks 'clean', 'compileJava', 'fatJar', 'test', 'checkstyleMain', 'pmd', 'findbugsMain', 'jacocoTestReport', 'wrapper'
 
 sourceSets {
 	main {
@@ -108,12 +108,16 @@ task fatJar(type: Jar) {
     	attributes "Main-Class": "frames.MenuInicio"
   	}
 
-    baseName = project.name + '-all'
+    baseName = project.name
     from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
     from('src/main/java/frames') {
     	include '*.png'
     	include '*.jpg'
     	into 'frames'
+  	}
+  	from(rootDir) {
+  		
+  		include 'config.txt'
   	}
  	
     with jar

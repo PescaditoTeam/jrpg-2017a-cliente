@@ -86,11 +86,19 @@ public class OfertasDisponibles extends JFrame {
 		comboBox.setBounds(15, 77, 425, 38);
 		layeredPane.add(comboBox);
 		for (int i = 0; i < mercado.getOfertas().size(); i++) {
-			String s = "El Usuario " + mercado.getOfertas().get(i).getUser() + " ofrece el Item "
-					+ Recursos.getItemsExistentesName(mercado.getOfertas().get(i).getOfertado()).toString()
-					+ " y pide a cambio el Item "
-					+ Recursos.getItemsExistentesName(mercado.getOfertas().get(i).getDemandado()).toString();
-			comboBox.addItem(s);
+		    if(!(mercado.getOfertas().get(i).isYaSeHizo())){
+                String s = "El Usuario " + mercado.getOfertas().get(i).getUser()
+                        + " ofrece el Item "
+                        + Recursos.getItemsExistentesName(
+                                mercado.getOfertas().get(i).getOfertado())
+                                .toString()
+                        + " y pide a cambio el Item "
+                        + Recursos.getItemsExistentesName(
+                                mercado.getOfertas().get(i).getDemandado())
+                                .toString();
+                comboBox.addItem(s);
+		    }
+
 			
 		}
 
