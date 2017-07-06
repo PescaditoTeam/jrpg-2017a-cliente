@@ -27,84 +27,103 @@ import recursos.Recursos;
 
 public class OfertasDisponibles extends JFrame {
 
-	private JPanel contentPane;
+    private JPanel contentPane;
+    boolean yaSeHizo=false;
 
-	public OfertasDisponibles(final Cliente cliente, Mercado mercado) {
+    public OfertasDisponibles(final Cliente cliente, Mercado mercado,
+            ArrayList<Ofertas> ofertasUtilizadas) {
 
-		ArrayList<Ofertas> ofertas = new ArrayList<Ofertas>();
-		setCursor(Toolkit.getDefaultToolkit().createCustomCursor(
-				new ImageIcon(MenuJugar.class.getResource("/cursor.png")).getImage(), new Point(0, 0),
-				"custom cursor"));
+        ArrayList<Ofertas> ofertas = new ArrayList<Ofertas>();
+        setCursor(Toolkit.getDefaultToolkit().createCustomCursor(
+                new ImageIcon(MenuJugar.class.getResource("/cursor.png"))
+                        .getImage(),
+                new Point(0, 0), "custom cursor"));
 
-		setTitle("Elije una oferta");
-		setBounds(100, 100, 450, 300);
+        setTitle("Elije una oferta");
+        setBounds(100, 100, 450, 300);
 
-		// En caso de cerrar
-		addWindowListener(new WindowAdapter() {
-			@Override
-			public void windowClosing(WindowEvent e) {
-				synchronized (cliente) {
-					cliente.setAccion(Comando.SALIR);
-					cliente.notify();
-				}
-				dispose();
-			}
-		});
+        // En caso de cerrar
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                synchronized (cliente) {
+                    cliente.setAccion(Comando.SALIR);
+                    cliente.notify();
+                }
+                dispose();
+            }
+        });
 
-		// Panel
-		setTitle("WOME - Ofertas Disponibles");
-		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
-		contentPane.setLayout(null);
-		setLocationRelativeTo(null);
-		setResizable(false);
+        // Panel
+        setTitle("WOME - Ofertas Disponibles");
+        setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        setBounds(100, 100, 450, 300);
+        contentPane = new JPanel();
+        contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+        setContentPane(contentPane);
+        contentPane.setLayout(null);
+        setLocationRelativeTo(null);
+        setResizable(false);
 
-		JLayeredPane layeredPane = new JLayeredPane();
-		layeredPane.setBounds(0, 0, 444, 271);
-		contentPane.add(layeredPane);
-		layeredPane.setLayout(null);
+        JLayeredPane layeredPane = new JLayeredPane();
+        layeredPane.setBounds(0, 0, 444, 271);
+        contentPane.add(layeredPane);
+        layeredPane.setLayout(null);
 
-		JButton btnAceptar = new JButton("Aceptar");
-		btnAceptar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-			}
-		});
-		btnAceptar.setBounds(178, 195, 89, 23);
-		layeredPane.add(btnAceptar);
+        JButton btnAceptar = new JButton("Aceptar");
+        btnAceptar.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
 
-		JLabel lblElijeUnaOferta = new JLabel("Elije una oferta de la Lista");
-		lblElijeUnaOferta.setBounds(165, 38, 136, 28);
-		layeredPane.add(lblElijeUnaOferta);
-		lblElijeUnaOferta.setForeground(Color.WHITE);
-		lblElijeUnaOferta.setFont(new Font("Tahoma", Font.PLAIN, 15));
+            }
+        });
+        btnAceptar.setBounds(178, 195, 89, 23);
+        layeredPane.add(btnAceptar);
 
-		JComboBox<String> comboBox = new JComboBox<String>();
-		comboBox.setBounds(15, 77, 425, 38);
-		layeredPane.add(comboBox);
-		for (int i = 0; i < mercado.getOfertas().size(); i++) {
-		    if(!(mercado.getOfertas().get(i).isYaSeHizo())){
-                String s = "El Usuario " + mercado.getOfertas().get(i).getUser()
-                        + " ofrece el Item "
-                        + Recursos.getItemsExistentesName(
-                                mercado.getOfertas().get(i).getOfertado())
-                                .toString()
-                        + " y pide a cambio el Item "
-                        + Recursos.getItemsExistentesName(
-                                mercado.getOfertas().get(i).getDemandado())
-                                .toString();
-                comboBox.addItem(s);
-		    }
+        JLabel lblElijeUnaOferta = new JLabel("Elije una oferta de la Lista");
+        lblElijeUnaOferta.setBounds(165, 38, 136, 28);
+        layeredPane.add(lblElijeUnaOferta);
+        lblElijeUnaOferta.setForeground(Color.WHITE);
+        lblElijeUnaOferta.setFont(new Font("Tahoma", Font.PLAIN, 15));
 
-			
-		}
+        JComboBox<String> comboBox = new JComboBox<String>();
+        comboBox.setBounds(15, 77, 425, 38);
+        layeredPane.add(comboBox);
+        for (int i = 0; i < mercado.getOfertas().size(); i++) {
+            for (int j = 0; j < ofertasUtilizadas.size(); j++) {
+                if (mercado.getOfertas().get(i)
+                        .getDemandado() == ofertasUtilizadas.get(j)
+                                .getDemandado()
+                        && mercado.getOfertas().get(i)
+                                .getOfertado() == ofertasUtilizadas.get(j)
+                                        .getOfertado()
+                        && mercado.getOfertas().get(i)
+                                .getIdUser() == ofertasUtilizadas.get(j)
+                                        .getIdUser()) {
+                    yaSeHizo=true;
+                }
+            }
+                if(yaSeHizo == false){
+                    String s = "El Usuario "
+                            + mercado.getOfertas().get(i).getUser()
+                            + " ofrece el Item "
+                            + Recursos.getItemsExistentesName(
+                                    mercado.getOfertas().get(i).getOfertado())
+                                    .toString()
+                            + " y pide a cambio el Item "
+                            + Recursos.getItemsExistentesName(
+                                    mercado.getOfertas().get(i).getDemandado())
+                                    .toString();
+                    comboBox.addItem(s);
+                
+                
+            }
+            yaSeHizo=false;
+        }
 
-		JLabel lblBackground = new JLabel("");
-		lblBackground.setBounds(0, 0, 444, 271);
-		layeredPane.add(lblBackground);
-		lblBackground.setIcon(new ImageIcon(MenuMapas.class.getResource("/frames/menuBackground.jpg")));
-	}
+        JLabel lblBackground = new JLabel("");
+        lblBackground.setBounds(0, 0, 444, 271);
+        layeredPane.add(lblBackground);
+        lblBackground.setIcon(new ImageIcon(
+                MenuMapas.class.getResource("/frames/menuBackground.jpg")));
+    }
 }

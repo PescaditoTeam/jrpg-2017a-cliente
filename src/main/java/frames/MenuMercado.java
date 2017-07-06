@@ -9,6 +9,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -37,6 +38,7 @@ public class MenuMercado extends JFrame {
     private Mercado mercado;
     private PaqueteMercado paqueteMercado;
     private Gson gson = new Gson();
+    private ArrayList<Ofertas> ofertasUtilizadas;
 
     public MenuMercado(final Cliente cliente) {
 
@@ -49,6 +51,7 @@ public class MenuMercado extends JFrame {
         setBounds(100, 100, 450, 300);
         paqueteMercado = new PaqueteMercado();
         mercado = new Mercado(EscuchaMensajes.getOfertasDisponibles());
+        ofertasUtilizadas = EscuchaMensajes.getOfertasUtilizadas();
         // En caso de cerrar
         addWindowListener(new WindowAdapter() {
             @Override
@@ -176,7 +179,7 @@ public class MenuMercado extends JFrame {
         JButton botonVerOferta = new JButton("Ver Ofertas");
         botonVerOferta.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                OfertasDisponibles o = new OfertasDisponibles(cliente, mercado);
+                OfertasDisponibles o = new OfertasDisponibles(cliente, mercado, ofertasUtilizadas);
                 o.setVisible(true);
             }
         });

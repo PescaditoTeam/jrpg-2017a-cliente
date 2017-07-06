@@ -22,93 +22,101 @@ import mensajeriaComandos.FactoryComandoEscuchaMensaje;
 
 public class EscuchaMensajes extends Thread {
 
-	private Juego juego;
-	private Cliente cliente;
-	private ObjectInputStream entrada;
-	private final Gson gson = new Gson();
-	
-	private Map<Integer, PaqueteMovimiento> ubicacionPersonajes;
-	private Map<Integer, PaquetePersonaje> personajesConectados;
-	private static ArrayList<Ofertas> ofertasDisponibles = new ArrayList<Ofertas>();
+    private Juego juego;
+    private Cliente cliente;
+    private ObjectInputStream entrada;
+    private final Gson gson = new Gson();
 
-	public EscuchaMensajes(Juego juego) {
-		this.juego = juego;
-		cliente = juego.getCliente();
-		entrada = cliente.getEntrada();
-	}
+    private Map<Integer, PaqueteMovimiento> ubicacionPersonajes;
+    private Map<Integer, PaquetePersonaje> personajesConectados;
+    private static ArrayList<Ofertas> ofertasDisponibles = new ArrayList<Ofertas>();
+    private static ArrayList<Ofertas> ofertasUtilizadas = new ArrayList<Ofertas>();
 
-	public void run() {
+    public EscuchaMensajes(Juego juego) {
+        this.juego = juego;
+        cliente = juego.getCliente();
+        entrada = cliente.getEntrada();
+    }
 
-		try {
+    public void run() {
 
-			Paquete paquete;
-			PaquetePersonaje paquetePersonaje;
-			PaqueteMovimiento personaje;
-			PaqueteBatalla paqueteBatalla;
-			PaqueteAtacar paqueteAtacar;
-			PaqueteFinalizarBatalla paqueteFinalizarBatalla;
-			personajesConectados = new HashMap<>();
-			ubicacionPersonajes = new HashMap<>();
-			ofertasDisponibles = new ArrayList<Ofertas>();
+        try {
 
-			while (true) {
-				
-				String objetoLeido = (String)entrada.readObject();
+            Paquete paquete;
+            PaquetePersonaje paquetePersonaje;
+            PaqueteMovimiento personaje;
+            PaqueteBatalla paqueteBatalla;
+            PaqueteAtacar paqueteAtacar;
+            PaqueteFinalizarBatalla paqueteFinalizarBatalla;
+            personajesConectados = new HashMap<>();
+            ubicacionPersonajes = new HashMap<>();
+            ofertasDisponibles = new ArrayList<Ofertas>();
 
-				paquete = gson.fromJson(objetoLeido , Paquete.class);
-				
-				FactoryComandoEscuchaMensaje factory = new FactoryComandoEscuchaMensaje();
-				Comando comando = factory.elegir(paquete.getComando(), objetoLeido, this);
-				comando.resolver();
-					
-			}
-		} catch (Exception e) {
-			JOptionPane.showMessageDialog(null, "Fallo la conexi�n con el servidor.");
-			e.printStackTrace();
-		}
-	}
+            while (true) {
 
-	public Map<Integer, PaqueteMovimiento> getUbicacionPersonajes() {
-		return ubicacionPersonajes;
-	}
-	
-	public Map<Integer, PaquetePersonaje> getPersonajesConectados(){
-		return personajesConectados;
-	}
+                String objetoLeido = (String) entrada.readObject();
 
-	public void setPersonajesConectados(Map<Integer, PaquetePersonaje> personajesConectados) {
-		this.personajesConectados = personajesConectados;
-	}
+                paquete = gson.fromJson(objetoLeido, Paquete.class);
 
-	public Juego getJuego() {
-		return juego;
-	}
+                FactoryComandoEscuchaMensaje factory = new FactoryComandoEscuchaMensaje();
+                Comando comando = factory.elegir(paquete.getComando(),
+                        objetoLeido, this);
+                comando.resolver();
 
-	public void setJuego(Juego juego) {
-		this.juego = juego;
-	}
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null,
+                    "Fallo la conexi�n con el servidor.");
+            e.printStackTrace();
+        }
+    }
 
-	public void setUbicacionPersonajes(Map<Integer, PaqueteMovimiento> ubicacionPersonajes) {
-		this.ubicacionPersonajes = ubicacionPersonajes;
-	}
+    public Map<Integer, PaqueteMovimiento> getUbicacionPersonajes() {
+        return ubicacionPersonajes;
+    }
 
-	public static ArrayList<Ofertas> getOfertasDisponibles() {
-		return ofertasDisponibles;
-	}
+    public Map<Integer, PaquetePersonaje> getPersonajesConectados() {
+        return personajesConectados;
+    }
 
-	public static void setOfertasDisponibles(ArrayList<Ofertas> ofertasDisponibles) {
-		EscuchaMensajes.ofertasDisponibles = ofertasDisponibles;
-	}
-	public static void AgregarOferta(Ofertas o){
-		ofertasDisponibles.add(o);
-	}
-	
-	public static void SacarOferta(Ofertas o1, Ofertas o2){
-	    int index1 = ofertasDisponibles.indexOf(o1);
-	    ofertasDisponibles.remove(index1);
-	    int index2 = ofertasDisponibles.indexOf(o1);
-        ofertasDisponibles.remove(index2);
-        
-	}
-	
+    public void setPersonajesConectados(
+            Map<Integer, PaquetePersonaje> personajesConectados) {
+        this.personajesConectados = personajesConectados;
+    }
+
+    public Juego getJuego() {
+        return juego;
+    }
+
+    public void setJuego(Juego juego) {
+        this.juego = juego;
+    }
+
+    public void setUbicacionPersonajes(
+            Map<Integer, PaqueteMovimiento> ubicacionPersonajes) {
+        this.ubicacionPersonajes = ubicacionPersonajes;
+    }
+
+    public static ArrayList<Ofertas> getOfertasDisponibles() {
+        return ofertasDisponibles;
+    }
+
+    public static void setOfertasDisponibles(
+            ArrayList<Ofertas> ofertasDisponibles) {
+        EscuchaMensajes.ofertasDisponibles = ofertasDisponibles;
+    }
+
+    public static void AgregarOferta(Ofertas o) {
+        ofertasDisponibles.add(o);
+    }
+
+    public static void SacarOferta(Ofertas o1, Ofertas o2) {
+        ofertasUtilizadas.add(o1);
+        ofertasUtilizadas.add(o2);
+    }
+
+    public static ArrayList<Ofertas> getOfertasUtilizadas() {
+        return ofertasUtilizadas;
+    }
+
 }
