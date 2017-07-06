@@ -98,6 +98,7 @@ public class MenuInicioSesion extends JFrame {
 							cliente.setAccion(Comando.INICIOSESION);
 							cliente.getPaqueteUsuario().setUsername(textField.getText());
 							cliente.getPaqueteUsuario().setPassword(passwordField.getText());
+							MenuChat.nombreUsuario = cliente.getPaqueteUsuario().getUsername();
 							cliente.notify();
 							dispose();
 						}

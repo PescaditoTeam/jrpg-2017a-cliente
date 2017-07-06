@@ -13,6 +13,7 @@ import javax.swing.JOptionPane;
 import com.google.gson.Gson;
 
 import estados.Estado;
+import frames.MenuChat;
 import frames.MenuMercado;
 import frames.MenuMochila;
 import interfaz.MenuInfoPersonaje;
@@ -85,6 +86,7 @@ public class Entidad {
 	private String nombre;
 	private int[] tilePersonajes;
 	private int idEnemigo;
+	private MenuChat menuChat;
 
 	public Entidad(Juego juego, Mundo mundo, int ancho, int alto, String nombre, float spawnX, float spawnY,
 			LinkedList<BufferedImage[]> animaciones, int velAnimacion) {
@@ -146,7 +148,7 @@ public class Entidad {
 
 		posMouseRecorrido = juego.getHandlerMouse().getPosMouseRecorrido();
 		posMouse = juego.getHandlerMouse().getPosMouse();
-
+		boolean abierto = false;
 		if(juego.getHandlerMouse().getNuevoClick() && posMouse[0] >= 738 && posMouse[0] <= 797  && posMouse[1] >= 545 && posMouse[1] <= 597) {
 			MenuMercado menu = new MenuMercado(juego.getCliente());
 			menu.setVisible(true);
@@ -158,7 +160,15 @@ public class Entidad {
 			juego.getHandlerMouse().setNuevoClick(false); 
 		}
 		if(juego.getHandlerMouse().getNuevoClick() && posMouse[0] >= 30 && posMouse[0] <= 89  && posMouse[1] >= 545 && posMouse[1] <= 597) {
-			// ACA ABRIR CHAT
+		    if(abierto == false){
+		        menuChat = new MenuChat(juego.getCliente());
+		        menuChat.setVisible(true);
+		        abierto = true;
+		    }
+		    else{ 
+		        menuChat.setVisible(true);
+		    }
+		    
 			juego.getHandlerMouse().setNuevoClick(false); 
 		}
 		
