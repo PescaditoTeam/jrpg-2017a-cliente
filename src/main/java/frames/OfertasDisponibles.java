@@ -27,6 +27,7 @@ import cliente.Cliente;
 import dominio.Mercado;
 import dominio.Ofertas;
 import mensajeria.PaqueteIntercambio;
+import mensajeria.PaqueteMercado;
 import mensajeriaComandos.Comando;
 import recursos.Recursos;
 
@@ -34,7 +35,7 @@ public class OfertasDisponibles extends JFrame {
 
     private JPanel contentPane;
     boolean yaSeHizo = false;
-    ArrayList<Ofertas> ofertasASeleccionar;
+    ArrayList<Ofertas> ofertasASeleccionar = new ArrayList<Ofertas>();
     Ofertas oSelect;
     Gson gson = new Gson();
 
@@ -143,6 +144,16 @@ public class OfertasDisponibles extends JFrame {
                         try {
                             cliente.getSalida()
                                     .writeObject(gson.toJson(paqueteIntercambio));
+                        } catch (IOException e1) {
+                            e1.printStackTrace();
+                        }
+                        PaqueteMercado paqueteMercado = new PaqueteMercado();
+                        paqueteMercado.setOferta(nueva);
+                        paqueteMercado.setOferta2(oSelect);
+                        paqueteMercado.setComando(Comando.SACAROFERTA);
+                        try {
+                            cliente.getSalida()
+                                    .writeObject(gson.toJson(paqueteMercado));
                         } catch (IOException e1) {
                             e1.printStackTrace();
                         }
