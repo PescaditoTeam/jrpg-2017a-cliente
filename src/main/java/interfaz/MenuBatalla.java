@@ -7,6 +7,7 @@ import java.awt.Rectangle;
 
 import dominio.Personaje;
 import juego.Pantalla;
+import mensajeria.PaquetePersonaje;
 import recursos.Recursos;
 
 public class MenuBatalla {
