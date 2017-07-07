@@ -71,7 +71,8 @@ public class Juego implements Runnable {
 		cargarRecursos.start();
 	}
 
-	public void iniciar() { // Carga lo necesario para iniciar el juego
+
+    public void iniciar() { // Carga lo necesario para iniciar el juego
 		pantalla = new Pantalla(NOMBRE, ANCHO, ALTO, cliente);
 
 		pantalla.getCanvas().addMouseListener(handlerMouse);
@@ -108,7 +109,7 @@ public class Juego implements Runnable {
 
 		// Fin de graficado de imagenes
 
-		bs.show(); // Hace visible el próximo buffer disponible
+		bs.show(); // Hace visible el prï¿½ximo buffer disponible
 		g.dispose();
 	}
 

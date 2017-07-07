@@ -37,6 +37,9 @@ public class EscuchaMensajes extends Thread {
         cliente = juego.getCliente();
         entrada = cliente.getEntrada();
     }
+    public EscuchaMensajes(){
+        
+    }
 
     public void run() {
 
