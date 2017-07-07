@@ -23,8 +23,9 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
-import chat.Mensaje;
-import chat.SocketCliente;
+import com.chat.socket.Mensaje;
+import com.chat.socket.SocketCliente;
+
 import cliente.Cliente;
 
 public class MenuChat extends JFrame {

@@ -1,4 +1,4 @@
-package chat;
+package com.chat.socket;
 
 import java.io.Serializable;
 //Lo Hago serializable para que pueda ser enviado a travez del pipe

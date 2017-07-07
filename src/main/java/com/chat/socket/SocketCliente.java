@@ -1,10 +1,12 @@
-package chat;
+package com.chat.socket;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.InetAddress;
 import java.net.Socket;
+
+import com.chat.ui.VistaCliente;
 
 import frames.MenuChat;
 
