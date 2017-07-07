@@ -42,7 +42,7 @@ public class SocketCliente implements Runnable{
                 System.out.println("Entrada: "+mensaje.toString());
                 
                 if(mensaje.tipo.equals("MENSAJE")){
-                    if(mensaje.destinatario.equals(ui.nombreUsuario)){
+                    if(mensaje.destinatario.equals(ui.getNombreUsuario())){
                         ui.chatArea.setText(ui.chatArea.getText() + mensaje.remitente+" ->Yo: " + mensaje.contenido + "\n");
                     }
                     else{
@@ -54,9 +54,24 @@ public class SocketCliente implements Runnable{
                 else if(mensaje.tipo.equals("TEST")){
                     System.out.println("TEST OK"+mensaje.remitente);
                 }
+                else if(mensaje.tipo.equals("NUEVO_USUARIO")){
+                    if(!mensaje.contenido.equals(ui.getNombreUsuario())){
+                        boolean yaEexiste = false;
+                        for(int i = 0; i < ui.modelo.getSize(); i++){
+                            if(ui.modelo.getElementAt(i).equals(mensaje.contenido)){
+                                yaEexiste = true;
+                                break;
+                            }
+                        }
+                        if(!yaEexiste){ 
+                        ui.modelo.addElement(mensaje.contenido); 
+                        }
+                    }
+                }
             }
             catch(Exception ex) {
                 mantenerCorriendo = false;
+                ex.printStackTrace();
                 ui.chatArea.setText(ui.chatArea.getText() + "Aplicacion->Yo: Coneccion Fall�\n");
                 //ui.jButton4.setEnabled(false); 
                 //Quita el usuario del modelo del JList
@@ -67,7 +82,7 @@ public class SocketCliente implements Runnable{
                 ui.clientThread.stop();
                 
                 System.out.println("Error en: SocketClient run()");
-                ex.printStackTrace();
+                
             }
         }
     }

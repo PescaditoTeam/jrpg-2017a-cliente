@@ -40,15 +40,20 @@ public class MenuChat extends JFrame {
     public static String nombreUsuario;
     public JTextArea chatArea;;
 
+    public String getNombreUsuario() {
+        return nombreUsuario;
+    }
+
+    public static void setNombreUsuario(String nombreUsuario) {
+        MenuChat.nombreUsuario = nombreUsuario;
+    }
+
     public MenuChat(final Cliente cliente) {
 
         setCursor(Toolkit.getDefaultToolkit().createCustomCursor(
                 new ImageIcon(MenuJugar.class.getResource("/cursor.png"))
                         .getImage(),
                 new Point(0, 0), "custom cursor"));
-
-        setTitle("Bienvenido al Chat");
-        setBounds(100, 100, 450, 300);
         setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent e) {
@@ -179,7 +184,7 @@ public class MenuChat extends JFrame {
                 socketCliente = new SocketCliente(this);
                 clientThread = new Thread(socketCliente);
                 clientThread.start();
-                 socketCliente.enviarMensaje(new Mensaje("TEST", "testUser","testContent", "SERVER"));
+                socketCliente.enviarMensaje(new Mensaje("TEST", "testUser","testContent", "SERVER"));
             } catch (Exception ex) {
                 // jTextArea1.append("Aplicacion->Yo: Servidor No
                 // Encontrado\n");
