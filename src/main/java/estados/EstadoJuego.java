@@ -80,9 +80,8 @@ public class EstadoJuego extends Estado {
 		g.drawImage(Recursos.chat, 30, 545, 59, 52, null);
 		g.drawImage(Recursos.mochila, 384, 545, 59, 52, null);
 		if(juego.getCliente().menuChat.isMensajePrivado() && !juego.getCliente().menuChat.isVisible()){
-		    g.drawImage(Recursos.notificacion, 80, 545, 9, 9, null);
+		    g.drawImage(Recursos.notificacion, 77, 545, 12, 12, null);
 		}
-		//juego.getCliente().menuChat.setMensajePrivado(false);
 		if(haySolicitud)
 			menuEnemigo.graficar(g, tipoSolicitud);
 			

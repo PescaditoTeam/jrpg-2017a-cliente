@@ -44,7 +44,6 @@ public class SocketCliente implements Runnable{
             	//aca se bloquea el hilo hasta que llegue info al pipe de entrada
                 Mensaje mensaje = (Mensaje) entrada.readObject();
                 System.out.println("Entrada: "+mensaje.toString());
-                ui.setMensajePrivado(false);
                 if(mensaje.tipo.equals("MENSAJE")){
                     if(mensaje.destinatario.equals(ui.nombreUsuario)){
                         ui.chatArea.append(mensaje.remitente+" ->Yo: " + mensaje.contenido + "\n");

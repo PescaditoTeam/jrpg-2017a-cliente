@@ -212,6 +212,7 @@ public class MenuChat extends JFrame {
     
     public void cerrar() {
         this.setVisible(false);
+        this.mensajePrivado = false;
     }
 
 }
