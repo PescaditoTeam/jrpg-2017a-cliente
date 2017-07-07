@@ -8,6 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
@@ -16,19 +17,26 @@ import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import com.google.gson.Gson;
 
 import cliente.Cliente;
 import dominio.Mercado;
 import dominio.Ofertas;
+import mensajeria.PaqueteIntercambio;
 import mensajeriaComandos.Comando;
 import recursos.Recursos;
 
 public class OfertasDisponibles extends JFrame {
 
     private JPanel contentPane;
-    boolean yaSeHizo=false;
+    boolean yaSeHizo = false;
+    ArrayList<Ofertas> ofertasASeleccionar;
+    Ofertas oSelect;
+    Gson gson = new Gson();
 
     public OfertasDisponibles(final Cliente cliente, Mercado mercado,
             ArrayList<Ofertas> ofertasUtilizadas) {
@@ -70,15 +78,6 @@ public class OfertasDisponibles extends JFrame {
         contentPane.add(layeredPane);
         layeredPane.setLayout(null);
 
-        JButton btnAceptar = new JButton("Aceptar");
-        btnAceptar.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-
-            }
-        });
-        btnAceptar.setBounds(178, 195, 89, 23);
-        layeredPane.add(btnAceptar);
-
         JLabel lblElijeUnaOferta = new JLabel("Elije una oferta de la Lista");
         lblElijeUnaOferta.setBounds(165, 38, 136, 28);
         layeredPane.add(lblElijeUnaOferta);
@@ -99,26 +98,62 @@ public class OfertasDisponibles extends JFrame {
                         && mercado.getOfertas().get(i)
                                 .getIdUser() == ofertasUtilizadas.get(j)
                                         .getIdUser()) {
-                    yaSeHizo=true;
+                    yaSeHizo = true;
                 }
             }
-                if(yaSeHizo == false){
-                    String s = "El Usuario "
-                            + mercado.getOfertas().get(i).getUser()
-                            + " ofrece el Item "
-                            + Recursos.getItemsExistentesName(
-                                    mercado.getOfertas().get(i).getOfertado())
-                                    .toString()
-                            + " y pide a cambio el Item "
-                            + Recursos.getItemsExistentesName(
-                                    mercado.getOfertas().get(i).getDemandado())
-                                    .toString();
-                    comboBox.addItem(s);
-                
-                
+            if (yaSeHizo == false) {
+                String s = "El Usuario " + mercado.getOfertas().get(i).getUser()
+                        + " ofrece el Item "
+                        + Recursos.getItemsExistentesName(
+                                mercado.getOfertas().get(i).getOfertado())
+                                .toString()
+                        + " y pide a cambio el Item "
+                        + Recursos.getItemsExistentesName(
+                                mercado.getOfertas().get(i).getDemandado())
+                                .toString();
+                comboBox.addItem(s);
+                ofertasASeleccionar.add(mercado.getOfertas().get(i));
             }
-            yaSeHizo=false;
+            yaSeHizo = false;
         }
+        JButton btnAceptar = new JButton("Aceptar");
+        btnAceptar.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                oSelect = ofertasASeleccionar.get(comboBox.getSelectedIndex());
+                if (oSelect.getIdUser() == cliente.getPaquetePersonaje()
+                        .getId()) {
+                    JOptionPane.showMessageDialog(null,
+                            "No puede hacerte una oferta a ti mismo");
+                } else {
+                    if (cliente.getPaquetePersonaje().getMochila()
+                            .getInventario()[oSelect.getDemandado()] == 0) {
+                        JOptionPane.showMessageDialog(null,
+                                "No cuentas con el Item que el Usuario "
+                                        + oSelect.getUser() + " pide a cambio");
+                    } else {
+
+                        Ofertas nueva = new Ofertas(oSelect.getDemandado(),
+                                oSelect.getOfertado(),
+                                cliente.getPaqueteUsuario().getUsername(),
+                                cliente.getPaquetePersonaje().getId());
+                        PaqueteIntercambio paqueteIntercambio = new PaqueteIntercambio(
+                                nueva.getIdUser(), oSelect.getIdUser(),
+                                nueva.getDemandado(), nueva.getOfertado());
+                        paqueteIntercambio.setComando(Comando.INTERCAMBIAR);
+                        try {
+                            cliente.getSalida()
+                                    .writeObject(gson.toJson(paqueteIntercambio));
+                        } catch (IOException e1) {
+                            e1.printStackTrace();
+                        }
+
+                    }
+                }
+
+            }
+        });
+        btnAceptar.setBounds(178, 195, 89, 23);
+        layeredPane.add(btnAceptar);
 
         JLabel lblBackground = new JLabel("");
         lblBackground.setBounds(0, 0, 444, 271);
