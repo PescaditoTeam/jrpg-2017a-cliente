@@ -14,9 +14,6 @@ public class MenuBatalla {
 	private static final int x = 50;
 	private static final int y = 380;
 	private static final int anchoBoton = 35;
-	// private static final int [][] botones = { { x + 48, y + 72 } , { x + 48,
-	// y + 146 } , { x + 221 , y + 72 } , { x + 221 , y + 146 } , { x + 394 , y
-	// + 72 } , { x + 394 , y + 146 } };
 	private static final int[][] botones = { { x + 90, y + 80 }, { x + 90, y + 160 }, { x + 182, y + 80 },
 			{ x + 182, y + 160 }, { x + 274, y + 80 }, { x + 274, y + 160 }, { x + 366, y + 80 }, { x + 366, y + 160 },
 			{ x + 438, y + 80 }, { x + 438, y + 160 }, { x + 510, y + 80 }, { x + 510, y + 160 }, { x + 582, y + 80 },
@@ -25,19 +22,18 @@ public class MenuBatalla {
 	private Personaje personaje;
 	private int[] itemsDisponibles;
 
-	public MenuBatalla(boolean habilitado, Personaje personaje) {
+	public MenuBatalla(boolean habilitado, Personaje personaje, int[] inv) {
 		this.habilitado = habilitado;
 		this.personaje = personaje;
-		itemsDisponibles = personaje.getMochila().getInventario();
+		itemsDisponibles = inv;
+		//itemsDisponibles = personaje.getMochila().getInventario();
 	}
 
 	public void graficar(Graphics g) {
 
 		if (habilitado)
-			// g.drawImage(Recursos.menuBatalla, x, y, null);
 			g.drawImage(Recursos.menuBatalla, x, y, 739, 235, null);
 		else
-			// g.drawImage(Recursos.menuBatallaDeshabilitado, x, y, null);
 			g.drawImage(Recursos.menuBatallaDeshabilitado, x, y, 739, 235, null);
 
 		// Dibujo los boones
@@ -53,8 +49,7 @@ public class MenuBatalla {
 				anchoBoton, anchoBoton, null);
 		g.drawImage(Recursos.habilidades.get("Ser Energizado"), botones[5][0], botones[5][1], anchoBoton, anchoBoton,
 				null);
-		// g.drawImage(Recursos.barraItems, botones[4][0] + 40, botones[4][1],
-		// 100, 120, null);
+		
 		if (itemsDisponibles[0] > 0)
 			g.drawImage(Recursos.items.get("Pocion de Salud"), botones[6][0], botones[6][1], anchoBoton, anchoBoton,
 					null);

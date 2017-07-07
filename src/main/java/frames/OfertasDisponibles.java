@@ -147,6 +147,8 @@ public class OfertasDisponibles extends JFrame {
                         } catch (IOException e1) {
                             e1.printStackTrace();
                         }
+                        JOptionPane.showMessageDialog(null,
+                                "Intercambio Exitoso");
                         PaqueteMercado paqueteMercado = new PaqueteMercado();
                         paqueteMercado.setOferta(nueva);
                         paqueteMercado.setOferta2(oSelect);

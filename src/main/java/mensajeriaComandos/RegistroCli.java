@@ -27,12 +27,12 @@ public class RegistroCli extends ComandoCliente{
 			MenuCreacionPj menuCreacionPJ = new MenuCreacionPj(cliente, cliente.getPaquetePersonaje());
 			menuCreacionPJ.setVisible(true);
 			
-			// Espero a que el usuario cree el personaje
-			/*try {
-				wait();
-			} catch (InterruptedException e1) {
-				e1.printStackTrace();
-			}*/
+			try {
+                cliente.wait();
+            } catch (InterruptedException e1) {
+                // TODO Auto-generated catch block
+                e1.printStackTrace();
+            }
 			
 			// Le envio los datos al servidor
 			cliente.getPaquetePersonaje().setComando(Comando.CREACIONPJ);

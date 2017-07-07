@@ -65,7 +65,7 @@ public class EstadoBatalla extends Estado {
 
 		crearPersonajes();
 
-		menuBatalla = new MenuBatalla(miTurno, personaje);
+		menuBatalla = new MenuBatalla(miTurno, personaje, paquetePersonaje.getMochila().getInventario());
 
 		miniaturaEnemigo = Recursos.personaje.get(enemigo.getNombreRaza()).get(5)[0];
 		miniaturaPersonaje = Recursos.personaje.get(personaje.getNombreRaza()).get(5)[0];

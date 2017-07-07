@@ -56,24 +56,10 @@ public class Cliente extends Thread {
 
 	public Cliente() {
 		
-		//Scanner sc;
 	      ip = JOptionPane.showInputDialog("Ingrese IP:");
 	        if(ip == null) {
 	            ip = "localhost";
 	        }
-	         /*puerto = Integer.parseInt(JOptionPane.showInputDialog("Ingrese Puerto:"));
-	            if(puerto == 0) {
-	                puerto = 9999;
-	            }*/
-		/*try {
-			sc = new Scanner(new File("config.txt"));
-			ip = sc.nextLine();
-			puerto = sc.nextInt();
-			sc.close();
-		} catch (FileNotFoundException e) {
-			JOptionPane.showMessageDialog(null, "No se ha encontrado el archivo de configuraci�n config.txt");
-			e.printStackTrace();
-		}*/
 		
 		try {
 			cliente = new Socket(ip, puerto);
