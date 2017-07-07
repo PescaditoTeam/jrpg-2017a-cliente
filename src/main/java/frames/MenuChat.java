@@ -40,6 +40,15 @@ public class MenuChat extends JFrame {
     public static String nombreUsuario;
     public JTextArea chatArea;;
     public JButton botonEnviar;
+    public boolean mensajePrivado;
+
+    public boolean isMensajePrivado() {
+        return mensajePrivado;
+    }
+
+    public void setMensajePrivado(boolean mensajePrivado) {
+        this.mensajePrivado = mensajePrivado;
+    }
 
     public String getNombreUsuario() {
         return nombreUsuario;

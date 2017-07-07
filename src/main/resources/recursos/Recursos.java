@@ -73,6 +73,7 @@ public class Recursos {
 	public static BufferedImage mercado;
 	public static BufferedImage chat;
 	public static BufferedImage mochila;
+	public static BufferedImage notificacion;
 	// Fin Entorno
 
 	// Batalla
@@ -349,6 +350,7 @@ public class Recursos {
 		mercado = CargadorImagen.cargarImagen("/Mercado.png");
 		chat = CargadorImagen.cargarImagen("/Chat.png");
 		mochila = CargadorImagen.cargarImagen("/Mochila2.png");
+		notificacion = CargadorImagen.cargarImagen("/Notificacion.png");
 		actualizarBarraDeCarga(++elementosCargados, menuCarga);
 		
 		// Mapa
