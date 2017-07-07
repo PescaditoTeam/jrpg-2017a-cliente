@@ -16,16 +16,17 @@ public class SocketCliente implements Runnable{
     public int puerto;
     public String direccionDelServidor;
     public Socket socket;
+    //public VistaCliente ui;
     public MenuChat ui;
     public ObjectInputStream entrada;
     public ObjectOutputStream salida;
+    public String miUserName="Not Set yet";
 
     
-    public SocketCliente(MenuChat menuChat) throws IOException{
-        ui = menuChat; 
-        this.direccionDelServidor = ui.serverAddr; 
-        this.puerto = ui.puerto;
+    public SocketCliente(/*VistaCliente vistaCliente*/ MenuChat menuChat) throws IOException{
+        ui = menuChat; this.direccionDelServidor = ui.serverAddr; this.puerto = ui.puerto;
         socket = new Socket(InetAddress.getByName(direccionDelServidor), puerto);
+            
         salida = new ObjectOutputStream(socket.getOutputStream());
         //SI no limpio a veces quedaba con basura en los intentos anteriores. usando PrintLn
         salida.flush();
@@ -37,43 +38,82 @@ public class SocketCliente implements Runnable{
         boolean mantenerCorriendo = true;
         while(mantenerCorriendo){
             try {
-                //aca se bloquea el hilo hasta que llegue info al pipe de entrada
+            	//aca se bloquea el hilo hasta que llegue info al pipe de entrada
                 Mensaje mensaje = (Mensaje) entrada.readObject();
                 System.out.println("Entrada: "+mensaje.toString());
                 
                 if(mensaje.tipo.equals("MENSAJE")){
-                    if(mensaje.destinatario.equals(ui.getNombreUsuario())){
-                        ui.chatArea.setText(ui.chatArea.getText() + mensaje.remitente+" ->Yo: " + mensaje.contenido + "\n");
+                    if(mensaje.destinatario.equals(ui.nombreUsuario)){
+                        ui.chatArea.append(mensaje.remitente+" ->Yo: " + mensaje.contenido + "\n");
                     }
                     else{
-                        ui.chatArea.setText(ui.chatArea.getText() + mensaje.remitente +"->"+mensaje.destinatario +": " + mensaje.contenido + "\n");
+                        ui.chatArea.append(mensaje.remitente +"->"+mensaje.destinatario +": " + mensaje.contenido + "\n");
                     }
                                             
                 }
                 //-------------------------------------------
+                // Comando Login
+                //-------------------------------------------
+                else if(mensaje.tipo.equals("LOGIN")){
+                    if(mensaje.contenido.equals("TRUE")){
+                     
+                        ui.botonEnviar.setEnabled(true);
+                        ui.chatArea.append("SERVER->Yo: Login Exitoso\n");
+                    }
+                    else{
+                        ui.chatArea.append("SERVER->Yo: Login Fallido\n");
+                    }
+                }
+              //-------------------------------------------
+                // Comando Test, usado para probar conexion la privera vez que se comunica cliente con servidor.
+                //-------------------------------------------
                 else if(mensaje.tipo.equals("TEST")){
                     System.out.println("TEST OK"+mensaje.remitente);
                 }
+              //-------------------------------------------
+                // Comando nuevo usuario,ya registrado.
+                //-------------------------------------------
                 else if(mensaje.tipo.equals("NUEVO_USUARIO")){
-                    if(!mensaje.contenido.equals(ui.getNombreUsuario())){
+                    if(!mensaje.contenido.equals(ui.nombreUsuario)){
                         boolean yaEexiste = false;
                         for(int i = 0; i < ui.modelo.getSize(); i++){
                             if(ui.modelo.getElementAt(i).equals(mensaje.contenido)){
-                                yaEexiste = true;
-                                break;
+                            	yaEexiste = true;
+                            	break;
                             }
                         }
                         if(!yaEexiste){ 
-                        ui.modelo.addElement(mensaje.contenido); 
-                        }
+                            ui.modelo.addElement(mensaje.contenido); 
+                            }
                     }
                 }
+                //-------------------------------------------
+                // Comando salir del sistema
+                //-------------------------------------------
+                else if(mensaje.tipo.equals("SALIR")){
+                    if(mensaje.contenido.equals(ui.nombreUsuario)){
+                        ui.chatArea.append(mensaje.remitente +"->Yo: Saliendo..\n");
+                       // ui.jButton1.setEnabled(true);
+                        ui.botonEnviar.setEnabled(false); 
+                        
+                        for(int i = 1; i < ui.modelo.size(); i++){
+                            ui.modelo.removeElementAt(i);
+                        }
+                        
+                        ui.clientThread.stop();
+                    }
+                    else{
+                        ui.modelo.removeElement(mensaje.contenido);
+                        ui.chatArea.append(mensaje.remitente +"->All: "+ mensaje.contenido +" Se Ha desconectado..\n");
+                    }
+                }
+
             }
             catch(Exception ex) {
                 mantenerCorriendo = false;
-                ex.printStackTrace();
-                ui.chatArea.setText(ui.chatArea.getText() + "Aplicacion->Yo: Coneccion Fall�\n");
-                //ui.jButton4.setEnabled(false); 
+                ui.chatArea.append("Aplicacion->Yo: Coneccion Fall�\n");
+             //   ui.jButton1.setEnabled(true);
+                ui.botonEnviar.setEnabled(false); 
                 //Quita el usuario del modelo del JList
                 for(int i = 1; i < ui.modelo.size(); i++){
                     ui.modelo.removeElementAt(i);
@@ -82,7 +122,7 @@ public class SocketCliente implements Runnable{
                 ui.clientThread.stop();
                 
                 System.out.println("Error en: SocketClient run()");
-                
+                ex.printStackTrace();
             }
         }
     }
@@ -91,7 +131,7 @@ public class SocketCliente implements Runnable{
         try {
             salida.writeObject(mensaje);
             salida.flush();
-            System.out.println("Saliente: " + mensaje.toString());
+            System.out.println("Saliente: "+mensaje.toString());
         } 
         catch (IOException ex) {
             System.out.println("Error en SocketClient enviarMensaje()");

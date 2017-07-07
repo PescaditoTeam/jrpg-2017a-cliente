@@ -86,8 +86,9 @@ public class Entidad {
 	private String nombre;
 	private int[] tilePersonajes;
 	private int idEnemigo;
-	private MenuChat menuChat;
-
+	//private MenuChat menuChat;
+	private boolean abierto = false;
+	
 	public Entidad(Juego juego, Mundo mundo, int ancho, int alto, String nombre, float spawnX, float spawnY,
 			LinkedList<BufferedImage[]> animaciones, int velAnimacion) {
 		this.juego = juego;
@@ -148,7 +149,7 @@ public class Entidad {
 
 		posMouseRecorrido = juego.getHandlerMouse().getPosMouseRecorrido();
 		posMouse = juego.getHandlerMouse().getPosMouse();
-		boolean abierto = false;
+		
 		if(juego.getHandlerMouse().getNuevoClick() && posMouse[0] >= 738 && posMouse[0] <= 797  && posMouse[1] >= 545 && posMouse[1] <= 597) {
 			MenuMercado menu = new MenuMercado(juego.getCliente());
 			menu.setVisible(true);
@@ -160,15 +161,7 @@ public class Entidad {
 			juego.getHandlerMouse().setNuevoClick(false); 
 		}
 		if(juego.getHandlerMouse().getNuevoClick() && posMouse[0] >= 30 && posMouse[0] <= 89  && posMouse[1] >= 545 && posMouse[1] <= 597) {
-		    if(abierto == false){
-		        menuChat = new MenuChat(juego.getCliente());
-		        menuChat.setVisible(true);
-		        abierto = true;
-		    }
-		    else{ 
-		        menuChat.setVisible(true);
-		    }
-		    
+		    juego.getCliente().menuChat.setVisible(true);		    
 			juego.getHandlerMouse().setNuevoClick(false); 
 		}
 		

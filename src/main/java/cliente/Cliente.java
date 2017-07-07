@@ -13,6 +13,7 @@ import javax.swing.JOptionPane;
 import com.google.gson.Gson;
 
 import frames.MenuCarga;
+import frames.MenuChat;
 import frames.MenuJugar;
 import frames.MenuMapas;
 import juego.Juego;
@@ -53,6 +54,8 @@ public class Cliente extends Thread {
 	
 	private Juego wome;
 	private MenuCarga menuCarga;
+	public MenuChat menuChat;
+
 
 	public Cliente() {
 		
@@ -161,6 +164,8 @@ public class Cliente extends Thread {
 				
 				// Inicio el juego
 				wome.start();
+				menuChat = new MenuChat(this);
+                menuChat.setVisible(false);
 				
 				// Finalizo el menu de carga
 				menuCarga.dispose();

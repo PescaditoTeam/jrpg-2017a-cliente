@@ -26,7 +26,6 @@ import javax.swing.border.EmptyBorder;
 import chat.Mensaje;
 import chat.SocketCliente;
 import cliente.Cliente;
-import mensajeriaComandos.Comando;
 
 public class MenuChat extends JFrame {
 
@@ -39,6 +38,7 @@ public class MenuChat extends JFrame {
     public DefaultListModel<String> modelo;
     public static String nombreUsuario;
     public JTextArea chatArea;;
+    public JButton botonEnviar;
 
     public String getNombreUsuario() {
         return nombreUsuario;
@@ -54,12 +54,7 @@ public class MenuChat extends JFrame {
                 new ImageIcon(MenuJugar.class.getResource("/cursor.png"))
                         .getImage(),
                 new Point(0, 0), "custom cursor"));
-        setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-        addWindowListener(new WindowAdapter() {
-            public void windowClosing(WindowEvent e) {
-                cerrar();
-            }
-        });
+        nombreUsuario = cliente.getPaqueteUsuario().getUsername();
         // En caso de cerrar
         // addWindowListener(new WindowAdapter() {
         // @Override
@@ -73,7 +68,7 @@ public class MenuChat extends JFrame {
         // });
         // nombreUsuario = cliente.getPaqueteUsuario().getUsername();
         // Panel
-        setTitle("WOME - Chat");
+        setTitle("WOME - Chat - " + cliente.getPaqueteUsuario().getUsername());
         setBounds(100, 100, 450, 300);
         contentPane = new JPanel();
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -92,7 +87,7 @@ public class MenuChat extends JFrame {
         labelSala.setBounds(28, 24, 82, 27);
         labelSala.setForeground(Color.WHITE);
         labelSala.setFont(new Font("Tahoma", Font.PLAIN, 15));
-        JList listaClientes = new JList();
+        JList<String> listaClientes = new JList<String>();
         listaClientes.setBounds(287, 54, 123, 155);
         listaClientes.setFont(new Font("Tahoma", Font.BOLD, 16));
         listaClientes.setModel((modelo = new DefaultListModel<String>()));
@@ -103,20 +98,30 @@ public class MenuChat extends JFrame {
         chatArea = new JTextArea();
         chatArea.setBounds(24, 52, 253, 157);
         chatArea.setEditable(false);
-        JButton botonEnviar = new JButton("Enviar");
-        botonEnviar.setBounds(287, 220, 102, 27);
+        chatArea.setColumns(20);
+        chatArea.setFont(new Font("Tahoma", Font.PLAIN, 14));
+        chatArea.setRows(5);
         JLabel lblBackground = new JLabel("");
         lblBackground.setBounds(0, 0, 444, 271);
+        
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        addWindowListener(new WindowAdapter() {
+            public void windowClosing(WindowEvent e) {
+                cerrar();
+            }
+        });
+        
+        botonEnviar = new JButton("Enviar");
+        botonEnviar.setBounds(287, 220, 102, 27);
+        botonEnviar.setEnabled(true);
         botonEnviar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent arg0) {
                 String mensaje = mensajeChat.getText();
-                String destinatario = listaClientes.getSelectedValue()
-                        .toString();
+                String destinatario = listaClientes.getSelectedValue().toString();
 
                 if (!mensaje.isEmpty() && !destinatario.isEmpty()) {
                     mensajeChat.setText("");
-                    socketCliente.enviarMensaje(new Mensaje("MENSAJE",
-                            nombreUsuario, mensaje, destinatario));
+                    socketCliente.enviarMensaje(new Mensaje("MENSAJE",nombreUsuario, mensaje, destinatario));
                 }
             }
         });
@@ -186,8 +191,7 @@ public class MenuChat extends JFrame {
                 clientThread.start();
                 socketCliente.enviarMensaje(new Mensaje("TEST", "testUser","testContent", "SERVER"));
             } catch (Exception ex) {
-                // jTextArea1.append("Aplicacion->Yo: Servidor No
-                // Encontrado\n");
+                 chatArea.append("Aplicacion->Yo: Servidor No Encontrado\n");
             }
         }
     }
