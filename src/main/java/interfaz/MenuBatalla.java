@@ -22,11 +22,10 @@ public class MenuBatalla {
 	private Personaje personaje;
 	private int[] itemsDisponibles;
 
-	public MenuBatalla(boolean habilitado, Personaje personaje, int[] inv) {
+	public MenuBatalla(boolean habilitado, Personaje personaje) {
 		this.habilitado = habilitado;
 		this.personaje = personaje;
-		itemsDisponibles = inv;
-		//itemsDisponibles = personaje.getMochila().getInventario();
+		itemsDisponibles = personaje.getMochila().getInventario();
 	}
 
 	public void graficar(Graphics g) {
