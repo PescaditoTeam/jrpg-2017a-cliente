@@ -1,4 +1,4 @@
-package testsCliente;
+/*package testsCliente;
 
 import java.io.IOException;
 
@@ -245,4 +245,4 @@ public class TestCliente {
 			e.printStackTrace();
 		}
 	}
-}
+}*/
