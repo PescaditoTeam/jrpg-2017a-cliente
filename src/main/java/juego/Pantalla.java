@@ -16,9 +16,11 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
+import com.chat.socket.Mensaje;
 import com.google.gson.Gson;
 
 import cliente.Cliente;
+import cliente.EscuchaMensajes;
 import frames.MenuJugar;
 import mensajeria.Paquete;
 import mensajeriaComandos.Comando;
@@ -50,6 +52,12 @@ public class Pantalla {
 					cliente.getEntrada().close();
 					cliente.getSalida().close();
 					cliente.getSocket().close();
+					try {
+	                    cliente.menuChat.socketCliente.enviarMensaje(new Mensaje("MENSAJE",
+	                            cliente.menuChat.nombreUsuario, ".bye", "SERVER"));
+	                    cliente.menuChat.clientThread.stop();
+	                } catch (Exception ex) {
+	                }
 					System.exit(0);
 				} catch (IOException e) {
 					JOptionPane.showMessageDialog(null, "Fallo al intentar cerrar la aplicaci�n.");

@@ -6,6 +6,8 @@ import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 
+import javax.swing.JOptionPane;
+
 import dominio.Personaje;
 import juego.Pantalla;
 import mensajeria.PaquetePersonaje;
@@ -113,6 +115,9 @@ public class MenuInfoPersonaje {
 		Pantalla.centerString(g, new Rectangle(x, y + 290, menu.getWidth(), 0), "a tu oponente, sigue as�");
 		Pantalla.centerString(g, new Rectangle(x, y + 310, menu.getWidth(), 0), "para lograr subir de nivel");
 		Pantalla.centerString(g, new Rectangle(x, y + 330, menu.getWidth(), 0), "y mejorar tus atributos.");
+		
+//		String itemGanado = personaje.getItemGanado();
+//		JOptionPane.showMessageDialog(null, "Felicitaciones!!" + "\n" + "Has ganado el item " + itemGanado);
 	}
 
 	private void graficarMenuSubirNivel(Graphics g) {

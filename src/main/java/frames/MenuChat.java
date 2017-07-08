@@ -4,6 +4,7 @@ package frames;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Point;
+import java.awt.TextArea;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -19,7 +20,6 @@ import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.JList;
 import javax.swing.JPanel;
-import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
@@ -27,6 +27,8 @@ import com.chat.socket.Mensaje;
 import com.chat.socket.SocketCliente;
 
 import cliente.Cliente;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class MenuChat extends JFrame {
 
@@ -38,7 +40,7 @@ public class MenuChat extends JFrame {
     public Thread clientThread;
     public DefaultListModel<String> modelo;
     public static String nombreUsuario;
-    public JTextArea chatArea;;
+    public TextArea chatArea;;
     public JButton botonEnviar;
     public boolean mensajePrivado;
 
@@ -102,10 +104,18 @@ public class MenuChat extends JFrame {
         listaClientes.setFont(new Font("Tahoma", Font.BOLD, 16));
         listaClientes.setModel((modelo = new DefaultListModel<String>()));
         mensajeChat = new JTextField();
+        mensajeChat.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent arg0) {
+                if(arg0.getKeyCode() == KeyEvent.VK_ENTER){ 
+                    botonAccion(listaClientes); 
+                    } 
+            }
+        });
         mensajeChat.setBounds(24, 220, 253, 27);
         mensajeChat.setColumns(20);
         mensajeChat.setFont(new Font("Tahoma", Font.PLAIN, 14));
-        chatArea = new JTextArea();
+        chatArea = new TextArea();
         chatArea.setBounds(24, 52, 253, 157);
         chatArea.setEditable(false);
         chatArea.setColumns(20);
@@ -126,13 +136,7 @@ public class MenuChat extends JFrame {
         botonEnviar.setEnabled(true);
         botonEnviar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent arg0) {
-                String mensaje = mensajeChat.getText();
-                String destinatario = listaClientes.getSelectedValue().toString();
-
-                if (!mensaje.isEmpty() && !destinatario.isEmpty()) {
-                    mensajeChat.setText("");
-                    socketCliente.enviarMensaje(new Mensaje("MENSAJE",nombreUsuario, mensaje, destinatario));
-                }
+                botonAccion(listaClientes);
             }
         });
         modelo.addElement("A TODOS");
@@ -213,6 +217,16 @@ public class MenuChat extends JFrame {
     public void cerrar() {
         this.setVisible(false);
         this.mensajePrivado = false;
+    }
+
+    private void botonAccion(JList<String> listaClientes) {
+        String mensaje = mensajeChat.getText();
+        String destinatario = listaClientes.getSelectedValue().toString();
+
+        if (!mensaje.isEmpty() && !destinatario.isEmpty()) {
+            mensajeChat.setText("");
+            socketCliente.enviarMensaje(new Mensaje("MENSAJE",nombreUsuario, mensaje, destinatario));
+        }
     }
 
 }
