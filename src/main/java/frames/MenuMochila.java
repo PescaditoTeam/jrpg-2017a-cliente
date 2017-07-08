@@ -91,6 +91,7 @@ public class MenuMochila extends JFrame{
 		        "Item", "Cantidad"
 		    }
 		));
+		table.setEnabled(false);
 		table.setFont(new Font("Tahoma", Font.BOLD, 13));
 		table.setBorder(new LineBorder(Color.GREEN, 2));
 		table.setBackground(Color.BLACK);
