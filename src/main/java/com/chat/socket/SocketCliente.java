@@ -43,7 +43,7 @@ public class SocketCliente implements Runnable{
             try {
             	//aca se bloquea el hilo hasta que llegue info al pipe de entrada
                 Mensaje mensaje = (Mensaje) entrada.readObject();
-                System.out.println("Entrada: "+mensaje.toString());
+                //System.out.println("Entrada: "+mensaje.toString());
                 if(mensaje.tipo.equals("MENSAJE")){
                     if(mensaje.destinatario.equals(ui.nombreUsuario)){
                         ui.chatArea.append(mensaje.remitente+" ->Yo: " + mensaje.contenido + "\n");
@@ -71,7 +71,7 @@ public class SocketCliente implements Runnable{
                 // Comando Test, usado para probar conexion la privera vez que se comunica cliente con servidor.
                 //-------------------------------------------
                 else if(mensaje.tipo.equals("TEST")){
-                    System.out.println("TEST OK"+mensaje.remitente);
+                    //System.out.println("TEST OK"+mensaje.remitente);
                 }
               //-------------------------------------------
                 // Comando nuevo usuario,ya registrado.
@@ -124,7 +124,7 @@ public class SocketCliente implements Runnable{
                 
                 ui.clientThread.stop();
                 
-                System.out.println("Error en: SocketClient run()");
+                //System.out.println("Error en: SocketClient run()");
                 ex.printStackTrace();
             }
         }
@@ -134,10 +134,10 @@ public class SocketCliente implements Runnable{
         try {
             salida.writeObject(mensaje);
             salida.flush();
-            System.out.println("Saliente: "+mensaje.toString());
+            //System.out.println("Saliente: "+mensaje.toString());
         } 
         catch (IOException ex) {
-            System.out.println("Error en SocketClient enviarMensaje()");
+            //System.out.println("Error en SocketClient enviarMensaje()");
         }
     }
     
